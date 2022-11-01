@@ -1,0 +1,15 @@
+POST http://localhost:8080/foods/add
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": null,
+  "name": "abc",
+  "weight": 100,
+  "proteinPer100g": 1,
+  "fatsPer100g": 1,
+  "kcalPer100g": 1,
+  "proteinTotal": 1,
+  "fatsTotal": 1,
+  "kcalTotal": 1
+}
