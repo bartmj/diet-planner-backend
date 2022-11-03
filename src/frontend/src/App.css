@@ -1,0 +1,31 @@
+.container {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.add-button {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 48px;
+}
+
+input {
+  margin: 12px;
+}
+
+.App-header {
+  background-color:cornflowerblue;
+  padding: 6px 0 6px 0;
+}
+
+.input {
+  width: 420px;
+}
+
+#multiselect::-webkit-calendar-picker-indicator { display: none !important; }
+
+@media only screen and (max-width: 992px) {
+  label {
+    display: block;
+  }
+}
