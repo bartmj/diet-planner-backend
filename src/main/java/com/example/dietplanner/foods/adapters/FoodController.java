@@ -6,10 +6,7 @@ import com.example.dietplanner.foods.domain.port.FoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,7 +17,7 @@ public class FoodController {
     private final FoodRestMapper foodRestMapper;
 
     @PostMapping(value = "/add", consumes = "application/json")
-    public ResponseEntity<Long> sendExercise(@RequestBody FoodDto foodDto) {
+    public ResponseEntity<Long> sendFood(@RequestBody FoodDto foodDto) {
         var food = foodRestMapper.toDomain(foodDto);
         var aLong = service.saveFood(food);
         return ResponseEntity
@@ -28,4 +25,19 @@ public class FoodController {
                 .body(aLong);
     }
 
+//    @GetMapping(value = "/all")
+//    public ResponseEntity<>
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
