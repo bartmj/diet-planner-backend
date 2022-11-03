@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "id": null,
-  "name": "kurczak",
+  "name": "serko",
   "weight": 200,
   "proteinPer100g": 27,
   "fatsPer100g": 8,

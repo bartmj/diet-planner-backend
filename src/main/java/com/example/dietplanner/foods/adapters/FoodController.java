@@ -19,6 +19,7 @@ public class FoodController {
     private final FoodService service;
     private final FoodRestMapper foodRestMapper;
 
+    @CrossOrigin
     @PostMapping(value = "/add", consumes = "application/json")
     public ResponseEntity<Long> sendFood(@RequestBody FoodDto foodDto) {
         var food = foodRestMapper.toDomain(foodDto);

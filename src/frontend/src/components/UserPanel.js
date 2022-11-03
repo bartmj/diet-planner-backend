@@ -1,18 +1,17 @@
 import React from 'react';
 import * as apiCalls from '../api/apiCalls';
-import {saveFood} from "../api/apiCalls";
 
 const options = [
-    { id: 1, value: 'chicken', protein: 27, calories: 239 },
-    { id: 2, value: 'eggs', protein: 13, calories: 155.1 },
-    { id: 3, value: 'cheese piątnica semi-fat', protein: 16, calories: 485 },
-    { id: 4, value: 'peanut butter', protein: 23.78, calories: 642 },
-    { id: 5, value: 'oats', protein: 14, calories: 418 },
-    { id: 6, value: 'walnut', protein: 15, calories: 654.4 },
-    { id: 7, value: 'dark bread', protein: 8.5, calories: 218 },
-    { id: 8, value: 'protein bar Olymp 64 g', protein: 31, calories: 369 },
-    { id: 9, value: 'WPI 90 Olymp', protein: 90, calories: 373 },
-    { id: 10, value: 'wheat noodles, cooked', protein: 5.15, calories: 131 }
+    { id: 1, value: 'chicken', proteinPer100g: 27, kcalPer100g: 239 },
+    { id: 2, value: 'eggs', proteinPer100g: 13, kcalPer100g: 155.1 },
+    { id: 3, value: 'cheese piątnica semi-fat', proteinPer100g: 16, kcalPer100g: 485 },
+    { id: 4, value: 'peanut butter', proteinPer100g: 23.78, kcalPer100g: 642 },
+    { id: 5, value: 'oats', proteinPer100g: 14, kcalPer100g: 418 },
+    { id: 6, value: 'walnut', proteinPer100g: 15, kcalPer100g: 654.4 },
+    { id: 7, value: 'dark bread', proteinPer100g: 8.5, kcalPer100g: 218 },
+    { id: 8, value: 'protein bar Olymp 64 g', proteinPer100g: 31, kcalPer100g: 369 },
+    { id: 9, value: 'WPI 90 Olymp', proteinPer100g: 90, kcalPer100g: 373 },
+    { id: 10, value: 'wheat noodles, cooked', proteinPer100g: 5.15, kcalPer100g: 131 }
 ]
 
 class UserPanel extends React.Component {
@@ -20,13 +19,18 @@ class UserPanel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            weight: 0,
-            protein: 0,
-            totalProtein: 0,
-            totalKcal: 0,
-            calories: 0,
             id: 0,
             name: '',
+            weight: 0,
+            proteinPer100g: 0,
+            fatsPer100g: 0,
+            kcalPer100g: 0,
+            totalProtein: 0,
+            totalFats: 0,
+            totalKcal: 0,
+            totalDayProtein: 0,
+            totalDayFats: 0,
+            totalDayKcal: 0,
             foods: []
         };
         this.handleChange = this.handleChange.bind(this);
@@ -36,26 +40,27 @@ class UserPanel extends React.Component {
 
     addObjectToArray = e => {
         e.preventDefault();
-        let proteinPerFood = (this.state.weight * this.state.protein) / 100
-        let caloriesPerFood = (this.state.weight * this.state.calories) / 100
+        let proteinPerFood = (this.state.weight * this.state.proteinPer100g) / 100
+        let kcalPerFood = (this.state.weight * this.state.kcalPer100g) / 100
+        let fatsPerFood = (this.state.weight * this.state.fatsPer100g) / 100
+
         this.setState({
             foods: [
                 ...this.state.foods,
-                { id: this.state.id + 1, name: this.state.name, protein: proteinPerFood, calories: caloriesPerFood }
+                { id: this.state.id + 1, name: this.state.name, totalProtein: proteinPerFood, totalKcal: kcalPerFood, totalFats: fatsPerFood }
             ],
-            name: '',
-            protein: 0,
-            weight: 0,
             id: this.state.id + 1,
-            totalProtein: this.state.totalProtein + proteinPerFood,
-            totalKcal: this.state.totalKcal + caloriesPerFood
+            name: '',
+            totalProtein: proteinPerFood,
+            totalKcal: kcalPerFood,
+            totalFats: fatsPerFood,
+            totalDayProtein: this.state.totalDayProtein + proteinPerFood,
+            totalDayFats: this.state.totalDayFats + fatsPerFood,
+            totalDayKcal: this.state.totalDayKcal + kcalPerFood
         })
 
-        saveFood();
-    };
-
-    saveFood = () => {
         apiCalls.saveFood(
+            this.state.id,
             this.state.name,
             this.state.weight,
             this.state.proteinPer100g,
@@ -64,11 +69,18 @@ class UserPanel extends React.Component {
             this.state.proteinTotal,
             this.state.fatsTotal,
             this.state.kcalTotal
-
         ).then(response => {
             console.log(response.data)
         })
+
+        this.setState({
+            weight: 0,
+            proteinPer100g: 0,
+            fatsPer100g: 0,
+            kcalPer100g: 0,
+        })
     };
+
 
     removeObject = val => {
         let obj = this.state.foods.find(o => o.id === val);
@@ -76,12 +88,11 @@ class UserPanel extends React.Component {
             foods: this.state.foods.filter(obj => {
                 return obj.id !== val;
             }),
-            totalProtein: this.state.totalProtein - obj.protein,
-            totalKcal: this.state.totalKcal - obj.calories
+            totalDayProtein: this.state.totalDayProtein - obj.totalProtein,
+            totalDayKcal: this.state.totalDayKcal - obj.totalKcal
 
         })
     }
-
 
     handleChange(e) {
         const value = e.target.value
@@ -98,16 +109,16 @@ class UserPanel extends React.Component {
         let obj = options.find(o => o.value.toLowerCase() === n.toLowerCase());
         if (obj) {
             this.setState({
-                protein: obj.protein,
-                calories: obj.calories
+                proteinPer100g: obj.proteinPer100g,
+                kcalPer100g: obj.kcalPer100g
             });
         }
     }
 
     render() {
         return <>
-            <h3>Total calories {Math.round(this.state.totalKcal * 100) / 100}kcal</h3>
-            <h3>Total protein {Math.round(this.state.totalProtein * 100) / 100}g</h3>
+            <h3>Total calories {Math.round(this.state.totalDayKcal * 100) / 100}kcal</h3>
+            <h3>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h3>
 
             <label>food:</label>
             <input
@@ -131,18 +142,18 @@ class UserPanel extends React.Component {
                 onChange={this.handleChange} />
             <label>protein/100g:</label>
             <input
-                name="protein"
-                value={this.state.protein}
+                name="proteinPer100g"
+                value={this.state.proteinPer100g}
                 onChange={this.handleChange} />
             <label>calories/100g</label>
             <input
-                name="calories"
-                value={this.state.calories}
+                name="caloriesPer100g"
+                value={this.state.kcalPer100g}
                 onChange={this.handleChange} />
             {this.state.foods.map(food => {
                 return (
                     <div key={food.id}>
-                        <p>food: {food.name}, protein: {Math.round(food.protein * 100) / 100}g, calories: {Math.round(food.calories * 100) / 100}kcal</p>
+                        <p>food: {food.name}, protein: {Math.round(food.totalProtein * 100) / 100}g, calories: {Math.round(food.totalKcal * 100) / 100}kcal</p>
                         <button
                             onClick={() => this.removeObject(food.id)}
                             type="button">x</button>
