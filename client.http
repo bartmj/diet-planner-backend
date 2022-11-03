@@ -4,12 +4,12 @@ Content-Type: application/json
 
 {
   "id": null,
-  "name": "abc",
-  "weight": 100,
-  "proteinPer100g": 1,
-  "fatsPer100g": 1,
-  "kcalPer100g": 1,
-  "proteinTotal": 1,
-  "fatsTotal": 1,
-  "kcalTotal": 1
+  "name": "kurczak",
+  "weight": 200,
+  "proteinPer100g": 27,
+  "fatsPer100g": 8,
+  "kcalPer100g": 400,
+  "proteinTotal": 54,
+  "fatsTotal": 16,
+  "kcalTotal": 800
 }

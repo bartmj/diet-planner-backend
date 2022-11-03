@@ -12,6 +12,6 @@ public class FoodProcessor implements FoodService {
 
     @Override
     public Long saveFood(Food food) {
-        return null;
+        return foodRepository.saveFood(food);
     }
 }
