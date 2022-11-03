@@ -5,6 +5,9 @@ import com.example.dietplanner.foods.domain.Food;
 import com.example.dietplanner.foods.domain.port.FoodRestMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class FoodRestMapperImplementation implements FoodRestMapper {
 
@@ -26,7 +29,26 @@ public class FoodRestMapperImplementation implements FoodRestMapper {
 
     @Override
     public FoodDto toDto(Food food) {
-        return null;
+        return FoodDto.builder()
+                .id(food.getId())
+                .name(food.getName())
+                .weight(food.getWeight())
+                .proteinPer100g(food.getProteinPer100g())
+                .fatsPer100g(food.getFatsPer100g())
+                .kcalPer100g(food.getKcalPer100g())
+                .proteinTotal(food.getProteinTotal())
+                .fatsTotal(food.getFatsTotal())
+                .kcalTotal(food.getKcalTotal())
+                .build();
+    }
+
+    @Override
+    public List<FoodDto> toDto(List<Food> foods) {
+        var foodDtoList = new ArrayList<FoodDto>();
+        for (final Food food : foods) {
+            foodDtoList.add(toDto(food));
+        }
+        return foodDtoList;
     }
 }
 

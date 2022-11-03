@@ -5,6 +5,9 @@ import com.example.dietplanner.foods.domain.Food;
 import com.example.dietplanner.foods.domain.port.FoodPersistenceMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 class FoodPersistenceMapperImplementation implements FoodPersistenceMapper {
 
@@ -23,6 +26,26 @@ class FoodPersistenceMapperImplementation implements FoodPersistenceMapper {
 
     @Override
     public Food toDomain(FoodEntity foodEntity) {
-        return null;
+        return Food.builder()
+                .id(foodEntity.getId())
+                .name(foodEntity.getName())
+                .weight(foodEntity.getWeight())
+                .proteinPer100g(foodEntity.getProteinPer100g())
+                .fatsPer100g(foodEntity.getFatsPer100g())
+                .kcalPer100g(foodEntity.getKcalPer100g())
+                .proteinTotal(foodEntity.getProteinTotal())
+                .fatsTotal(foodEntity.getFatsTotal())
+                .kcalTotal(foodEntity.getKcalTotal())
+                .build();
+
+    }
+
+    @Override
+    public List<Food> toDomain(List<FoodEntity> foodEntityList) {
+        List<Food> foods = new ArrayList<>();
+        for (final FoodEntity entity : foodEntityList) {
+            foods.add(toDomain(entity));
+        }
+        return foods;
     }
 }

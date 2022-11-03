@@ -13,3 +13,11 @@ Content-Type: application/json
   "fatsTotal": 16,
   "kcalTotal": 800
 }
+
+###
+
+GET http://localhost:8080/foods/all
+Accept: application/json
+Content-Type: application/json
+
+
