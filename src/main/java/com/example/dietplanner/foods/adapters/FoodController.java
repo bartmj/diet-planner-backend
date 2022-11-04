@@ -29,6 +29,7 @@ public class FoodController {
                 .body(aLong);
     }
 
+    @CrossOrigin
     @GetMapping(value = "/all")
     public ResponseEntity<List<FoodDto>> getAllFoods() {
         List<Food> foods = service.getAll();
