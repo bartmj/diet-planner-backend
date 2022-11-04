@@ -59,20 +59,19 @@ class UserPanel extends React.Component {
             totalDayKcal: this.state.totalDayKcal + kcalPerFood
         })
 
-        apiCalls.saveFood(
-            this.state.id,
-            this.state.name,
-            this.state.weight,
-            this.state.proteinPer100g,
-            this.state.fatsPer100g,
-            this.state.kcalPer100g,
-            proteinPerFood,
-            fatsPerFood,
-            kcalPerFood
-        )
-        //     .then(response => {
-        //     console.log(response.data)
-        // })
+        let dtoObj = {
+            id: this.state.id,
+            name: this.state.name,
+            weight: this.state.weight,
+            proteinPer100g: this.state.proteinPer100g,
+            fatsPer100g: this.state.fatsPer100g,
+            kcalPer100g: this.state.kcalPer100g,
+            proteinTotal: proteinPerFood,
+            fatsTotal: fatsPerFood,
+            kcalTotal: kcalPerFood
+        }
+
+        apiCalls.saveFood(dtoObj);
 
         this.setState({
             weight: 0,
@@ -100,6 +99,12 @@ class UserPanel extends React.Component {
         this.setState({
             [e.target.name]: value
         });
+    }
+
+    loadFoods() {
+        apiCalls.getAll().then(response => {
+                console.log(response)
+        })
     }
 
     handleNameChange(e) {
@@ -154,7 +159,7 @@ class UserPanel extends React.Component {
                 onChange={this.handleChange} />
             <label>calories/100g</label>
             <input
-                name="caloriesPer100g"
+                name="kcalPer100g"
                 value={this.state.kcalPer100g}
                 onChange={this.handleChange} />
             {this.state.foods.map(food => {
@@ -173,6 +178,12 @@ class UserPanel extends React.Component {
                 className="add-button"
                 onClick={this.addObjectToArray}>
                 Add food
+            </button>
+
+            <button
+                className="add-button"
+                onClick={this.loadFoods}>
+                Load foods
             </button>
         </>
     }
