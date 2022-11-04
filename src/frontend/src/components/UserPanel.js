@@ -2,16 +2,16 @@ import React from 'react';
 import * as apiCalls from '../api/apiCalls';
 
 const options = [
-    { id: 1, value: 'chicken', proteinPer100g: 27, kcalPer100g: 239 },
-    { id: 2, value: 'eggs', proteinPer100g: 13, kcalPer100g: 155.1 },
-    { id: 3, value: 'cheese piątnica semi-fat', proteinPer100g: 16, kcalPer100g: 485 },
-    { id: 4, value: 'peanut butter', proteinPer100g: 23.78, kcalPer100g: 642 },
-    { id: 5, value: 'oats', proteinPer100g: 14, kcalPer100g: 418 },
-    { id: 6, value: 'walnut', proteinPer100g: 15, kcalPer100g: 654.4 },
-    { id: 7, value: 'dark bread', proteinPer100g: 8.5, kcalPer100g: 218 },
-    { id: 8, value: 'protein bar Olymp 64 g', proteinPer100g: 31, kcalPer100g: 369 },
-    { id: 9, value: 'WPI 90 Olymp', proteinPer100g: 90, kcalPer100g: 373 },
-    { id: 10, value: 'wheat noodles, cooked', proteinPer100g: 5.15, kcalPer100g: 131 }
+    { id: 1, value: 'chicken', proteinPer100g: 27, kcalPer100g: 239, fatsPer100g: 1 },
+    { id: 2, value: 'eggs', proteinPer100g: 13, kcalPer100g: 155.1, fatsPer100g: 1 },
+    { id: 3, value: 'cheese piątnica semi-fat', proteinPer100g: 16, kcalPer100g: 485, fatsPer100g: 1 },
+    { id: 4, value: 'peanut butter', proteinPer100g: 23.78, kcalPer100g: 642, fatsPer100g: 1 },
+    { id: 5, value: 'oats', proteinPer100g: 14, kcalPer100g: 418, fatsPer100g: 1 },
+    { id: 6, value: 'walnut', proteinPer100g: 15, kcalPer100g: 654.4, fatsPer100g: 1 },
+    { id: 7, value: 'dark bread', proteinPer100g: 8.5, kcalPer100g: 218, fatsPer100g: 1 },
+    { id: 8, value: 'protein bar Olymp 64 g', proteinPer100g: 31, kcalPer100g: 369, fatsPer100g: 1 },
+    { id: 9, value: 'WPI 90 Olymp', proteinPer100g: 90, kcalPer100g: 373, fatsPer100g: 1 },
+    { id: 10, value: 'wheat noodles, cooked', proteinPer100g: 5.15, kcalPer100g: 131, fatsPer100g: 1 }
 ]
 
 class UserPanel extends React.Component {
@@ -66,12 +66,13 @@ class UserPanel extends React.Component {
             this.state.proteinPer100g,
             this.state.fatsPer100g,
             this.state.kcalPer100g,
-            this.state.proteinTotal,
-            this.state.fatsTotal,
-            this.state.kcalTotal
-        ).then(response => {
-            console.log(response.data)
-        })
+            proteinPerFood,
+            fatsPerFood,
+            kcalPerFood
+        )
+        //     .then(response => {
+        //     console.log(response.data)
+        // })
 
         this.setState({
             weight: 0,
@@ -110,7 +111,8 @@ class UserPanel extends React.Component {
         if (obj) {
             this.setState({
                 proteinPer100g: obj.proteinPer100g,
-                kcalPer100g: obj.kcalPer100g
+                kcalPer100g: obj.kcalPer100g,
+                fatsPer100g: obj.fatsPer100g
             });
         }
     }
@@ -144,6 +146,11 @@ class UserPanel extends React.Component {
             <input
                 name="proteinPer100g"
                 value={this.state.proteinPer100g}
+                onChange={this.handleChange} />
+            <label>fats/100g</label>
+            <input
+                name="fatsPer100g"
+                value={this.state.fatsPer100g}
                 onChange={this.handleChange} />
             <label>calories/100g</label>
             <input
