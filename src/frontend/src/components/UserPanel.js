@@ -20,15 +20,11 @@ class UserPanel extends React.Component {
         super(props);
 
         this.state = {
-            id: 0,
             name: '',
             weight: 0,
             proteinPer100g: 0,
             fatsPer100g: 0,
             kcalPer100g: 0,
-            proteinTotal: 0,
-            totalFats: 0,
-            kcalTotal: 0,
             totalDayProtein: 0,
             totalDayFats: 0,
             totalDayKcal: 0,
@@ -40,33 +36,19 @@ class UserPanel extends React.Component {
     }
 
     componentDidMount() {
-        console.log('page loaded');
+        // console.log('page loaded');
         this.loadFoods();
     }
 
     addObjectToArray = e => {
         e.preventDefault();
+
         let proteinPerFood = (this.state.weight * this.state.proteinPer100g) / 100
         let kcalPerFood = (this.state.weight * this.state.kcalPer100g) / 100
         let fatsPerFood = (this.state.weight * this.state.fatsPer100g) / 100
 
-        this.setState({
-            foods: [
-                ...this.state.foods,
-                { id: this.state.id + 1, name: this.state.name, proteinTotal: proteinPerFood, kcalTotal: kcalPerFood, totalFats: fatsPerFood }
-            ],
-            id: this.state.id + 1,
-            name: '',
-            proteinTotal: proteinPerFood,
-            kcalTotal: kcalPerFood,
-            totalFats: fatsPerFood,
-            totalDayProtein: this.state.totalDayProtein + proteinPerFood,
-            totalDayFats: this.state.totalDayFats + fatsPerFood,
-            totalDayKcal: this.state.totalDayKcal + kcalPerFood
-        })
-
         let dtoObj = {
-            id: this.state.id,
+            id: null,
             name: this.state.name,
             weight: this.state.weight,
             proteinPer100g: this.state.proteinPer100g,
@@ -77,13 +59,23 @@ class UserPanel extends React.Component {
             kcalTotal: kcalPerFood
         }
 
-        apiCalls.saveFood(dtoObj);
+        apiCalls.saveFood(dtoObj).then(response => {
+            let idFromDb = response.data
 
-        this.setState({
-            weight: 0,
-            proteinPer100g: 0,
-            fatsPer100g: 0,
-            kcalPer100g: 0,
+            this.setState({
+                foods: [
+                    ...this.state.foods,
+                    { id: idFromDb, name: this.state.name, proteinTotal: proteinPerFood, kcalTotal: kcalPerFood, totalFats: fatsPerFood }
+                ],
+                name: '',
+                weight: 0,
+                proteinPer100g: 0,
+                fatsPer100g: 0,
+                kcalPer100g: 0,
+                totalDayProtein: this.state.totalDayProtein + proteinPerFood,
+                totalDayFats: this.state.totalDayFats + fatsPerFood,
+                totalDayKcal: this.state.totalDayKcal + kcalPerFood
+            })
         })
     };
 
@@ -153,7 +145,8 @@ class UserPanel extends React.Component {
                 name=""
                 list="productName"
                 onChange={this.handleNameChange}
-                value={this.state.name} />
+                value={this.state.name}
+            />
             <datalist id="productName">
                 {options.map(option => {
                     return (
