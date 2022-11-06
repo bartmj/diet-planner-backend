@@ -36,7 +36,6 @@ class UserPanel extends React.Component {
     }
 
     componentDidMount() {
-        // console.log('page loaded');
         this.loadFoods();
     }
 
