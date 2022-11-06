@@ -112,9 +112,7 @@ class UserPanel extends React.Component {
             this.setState({
                     foods: response.data
                 })
-            let totalDayProtein = 0
-            let totalDayFats = 0
-            let totalDayKcal = 0
+            let totalDayProtein = 0, totalDayFats = 0, totalDayKcal = 0
             for (const element of response.data) {
                 totalDayProtein = totalDayProtein + element.proteinTotal
                 totalDayFats = totalDayFats + element.fatsTotal
