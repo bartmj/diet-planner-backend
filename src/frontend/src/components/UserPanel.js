@@ -96,8 +96,8 @@ class UserPanel extends React.Component {
             }),
             totalDayProtein: this.state.totalDayProtein - obj.proteinTotal,
             totalDayKcal: this.state.totalDayKcal - obj.kcalTotal
-
         })
+        apiCalls.remove(val)
     }
 
     handleChange(e) {

@@ -39,6 +39,16 @@ public class FoodController {
                 .body(foodDtoList);
     }
 
+    @CrossOrigin
+    @DeleteMapping(value = "/all/{id}")
+    public ResponseEntity<Long> deleteFood(@PathVariable Long id) {
+        var isRemoved = service.delete(id);
+        if (!isRemoved) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
 }
 
 

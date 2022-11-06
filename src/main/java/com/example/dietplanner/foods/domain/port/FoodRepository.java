@@ -9,4 +9,6 @@ public interface FoodRepository {
     Long saveFood(Food food);
 
     List<Food> getAll();
+
+    boolean deleteFood(Long id);
 }

@@ -9,4 +9,6 @@ public interface FoodService {
     Long saveFood(Food food);
 
     List<Food> getAll();
+
+    boolean delete(Long id);
 }

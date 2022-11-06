@@ -27,4 +27,14 @@ public class FoodPersistenceAdapter implements FoodRepository {
         var foodEntities = jpaFoodRepository.findAll();
         return mapper.toDomain(foodEntities);
     }
+
+    @Override
+    public boolean deleteFood(Long id) {
+        var byId = jpaFoodRepository.findById(id);
+        if (byId.isPresent()) {
+            jpaFoodRepository.delete(byId.get());
+            return true;
+        }
+        return false;
+    }
 }

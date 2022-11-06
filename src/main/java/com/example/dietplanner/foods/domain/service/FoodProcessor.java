@@ -21,4 +21,9 @@ public class FoodProcessor implements FoodService {
     public List<Food> getAll() {
         return foodRepository.getAll();
     }
+
+    @Override
+    public boolean delete(Long id) {
+        return foodRepository.deleteFood(id);
+    }
 }
