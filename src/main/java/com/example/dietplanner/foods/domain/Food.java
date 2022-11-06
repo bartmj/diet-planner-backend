@@ -11,12 +11,12 @@ public class Food {
 
     Long id;
     String name;
-    Integer weight;
-    Integer proteinPer100g;
-    Integer fatsPer100g;
-    Integer kcalPer100g;
-    Integer proteinTotal;
-    Integer fatsTotal;
-    Integer kcalTotal;
+    Float weight;
+    Float proteinPer100g;
+    Float fatsPer100g;
+    Float kcalPer100g;
+    Float proteinTotal;
+    Float fatsTotal;
+    Float kcalTotal;
 
 }

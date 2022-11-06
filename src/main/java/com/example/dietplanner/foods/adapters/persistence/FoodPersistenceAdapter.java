@@ -1,5 +1,6 @@
 package com.example.dietplanner.foods.adapters.persistence;
 
+import com.example.dietplanner.foods.adapters.entity.FoodEntity;
 import com.example.dietplanner.foods.adapters.repository.JpaFoodRepository;
 import com.example.dietplanner.foods.domain.Food;
 import com.example.dietplanner.foods.domain.port.FoodPersistenceMapper;
@@ -18,8 +19,8 @@ public class FoodPersistenceAdapter implements FoodRepository {
 
     @Override
     public Long saveFood(Food food) {
-        var foodEntity = mapper.toEntity(food);
-        return jpaFoodRepository.save(foodEntity).getId();
+        var entity = mapper.toEntity(food);
+        return jpaFoodRepository.save(entity).getId();
     }
 
     @Override

@@ -20,12 +20,12 @@ public class FoodEntity {
     @GeneratedValue
     private Long id;
     private String name;
-    private Integer weight;
-    private Integer proteinPer100g;
-    private Integer fatsPer100g;
-    private Integer kcalPer100g;
-    private Integer proteinTotal;
-    private Integer fatsTotal;
-    private Integer kcalTotal;
+    private Float weight;
+    private Float proteinPer100g;
+    private Float fatsPer100g;
+    private Float kcalPer100g;
+    private Float proteinTotal;
+    private Float fatsTotal;
+    private Float kcalTotal;
 
 }

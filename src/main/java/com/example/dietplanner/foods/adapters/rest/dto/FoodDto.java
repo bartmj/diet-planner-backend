@@ -9,35 +9,25 @@ import javax.validation.constraints.NotNull;
 @ToString
 @Getter
 @Setter
+@AllArgsConstructor
 public class FoodDto {
 
     Long id;
     @NotBlank
     String name;
     @NotNull
-    Integer weight;
+    Float weight;
     @NotNull
-    Integer proteinPer100g;
+    Float proteinPer100g;
     @NotNull
-    Integer fatsPer100g;
+    Float fatsPer100g;
     @NotNull
-    Integer kcalPer100g;
+    Float kcalPer100g;
     @NotNull
-    Integer proteinTotal;
+    Float proteinTotal;
     @NotNull
-    Integer fatsTotal;
+    Float fatsTotal;
     @NotNull
-    Integer kcalTotal;
+    Float kcalTotal;
 
-    public FoodDto(Long id, String name, Integer weight, Integer proteinPer100g, Integer fatsPer100g, Integer kcalPer100g, Integer proteinTotal, Integer fatsTotal, Integer kcalTotal) {
-        this.id = id;
-        this.name = name;
-        this.weight = weight;
-        this.proteinPer100g = proteinPer100g;
-        this.fatsPer100g = fatsPer100g;
-        this.kcalPer100g = kcalPer100g;
-        this.proteinTotal = proteinTotal;
-        this.fatsTotal = fatsTotal;
-        this.kcalTotal = kcalTotal;
-    }
 }

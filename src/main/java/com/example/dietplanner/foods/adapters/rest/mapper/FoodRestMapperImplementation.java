@@ -51,13 +51,3 @@ public class FoodRestMapperImplementation implements FoodRestMapper {
         return foodDtoList;
     }
 }
-
-//    Long id;
-//    String name;
-//    Integer weight;
-//    Integer proteinPer100g;
-//    Integer fatsPer100g;
-//    Integer kcalPer100g;
-//    Integer proteinTotal;
-//    Integer fatsTotal;
-//    Integer kcalTotal;
