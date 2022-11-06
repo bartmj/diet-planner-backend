@@ -18,6 +18,7 @@ class UserPanel extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             id: 0,
             name: '',
@@ -25,9 +26,9 @@ class UserPanel extends React.Component {
             proteinPer100g: 0,
             fatsPer100g: 0,
             kcalPer100g: 0,
-            totalProtein: 0,
+            proteinTotal: 0,
             totalFats: 0,
-            totalKcal: 0,
+            kcalTotal: 0,
             totalDayProtein: 0,
             totalDayFats: 0,
             totalDayKcal: 0,
@@ -36,6 +37,11 @@ class UserPanel extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
 
+    }
+
+    componentDidMount() {
+        console.log('page loaded');
+        this.loadFoods();
     }
 
     addObjectToArray = e => {
@@ -47,12 +53,12 @@ class UserPanel extends React.Component {
         this.setState({
             foods: [
                 ...this.state.foods,
-                { id: this.state.id + 1, name: this.state.name, totalProtein: proteinPerFood, totalKcal: kcalPerFood, totalFats: fatsPerFood }
+                { id: this.state.id + 1, name: this.state.name, proteinTotal: proteinPerFood, kcalTotal: kcalPerFood, totalFats: fatsPerFood }
             ],
             id: this.state.id + 1,
             name: '',
-            totalProtein: proteinPerFood,
-            totalKcal: kcalPerFood,
+            proteinTotal: proteinPerFood,
+            kcalTotal: kcalPerFood,
             totalFats: fatsPerFood,
             totalDayProtein: this.state.totalDayProtein + proteinPerFood,
             totalDayFats: this.state.totalDayFats + fatsPerFood,
@@ -88,8 +94,8 @@ class UserPanel extends React.Component {
             foods: this.state.foods.filter(obj => {
                 return obj.id !== val;
             }),
-            totalDayProtein: this.state.totalDayProtein - obj.totalProtein,
-            totalDayKcal: this.state.totalDayKcal - obj.totalKcal
+            totalDayProtein: this.state.totalDayProtein - obj.proteinTotal,
+            totalDayKcal: this.state.totalDayKcal - obj.kcalTotal
 
         })
     }
@@ -101,9 +107,24 @@ class UserPanel extends React.Component {
         });
     }
 
-    loadFoods() {
+    loadFoods = () => {
         apiCalls.getAll().then(response => {
-                console.log(response)
+            this.setState({
+                    foods: response.data
+                })
+            let totalDayProtein = 0
+            let totalDayFats = 0
+            let totalDayKcal = 0
+            for (const element of response.data) {
+                totalDayProtein = totalDayProtein + element.proteinTotal
+                totalDayFats = totalDayFats + element.fatsTotal
+                totalDayKcal = totalDayKcal + element.kcalTotal
+            }
+            this.setState({
+                totalDayProtein: totalDayProtein,
+                totalDayFats: totalDayFats,
+                totalDayKcal: totalDayKcal
+            })
         })
     }
 
@@ -165,7 +186,8 @@ class UserPanel extends React.Component {
             {this.state.foods.map(food => {
                 return (
                     <div key={food.id}>
-                        <p>food: {food.name}, protein: {Math.round(food.totalProtein * 100) / 100}g, calories: {Math.round(food.totalKcal * 100) / 100}kcal</p>
+                        <p>food: {food.name},
+                            protein: {Math.round(food.proteinTotal * 100) / 100}g, calories: {Math.round(food.kcalTotal * 100) / 100}kcal</p>
                         <button
                             onClick={() => this.removeObject(food.id)}
                             type="button">x</button>
@@ -180,11 +202,6 @@ class UserPanel extends React.Component {
                 Add food
             </button>
 
-            <button
-                className="add-button"
-                onClick={this.loadFoods}>
-                Load foods
-            </button>
         </>
     }
 }
