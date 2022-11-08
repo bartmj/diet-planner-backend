@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-const port = 5000
+// const port = 5000
 
-const basePath = `http://localhost:${port}/foods`;
+const rdsUrl = 'dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com'
+
+const basePath = `http://${rdsUrl}/foods`;
 
 export const remove = (val) => {
     axios.delete(basePath + '/all/' + val)

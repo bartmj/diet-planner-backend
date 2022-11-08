@@ -1,4 +1,4 @@
-POST http://localhost:8080/foods/add
+POST http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/foods/add
 Accept: application/json
 Content-Type: application/json
 
@@ -16,7 +16,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8080/foods/all
+GET http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/foods/all
 Accept: application/json
 Content-Type: application/json
 
