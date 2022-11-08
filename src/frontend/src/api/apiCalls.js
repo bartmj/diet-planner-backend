@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const basePath = 'http://localhost:8080/foods';
+const port = 5000
+
+const basePath = `http://localhost:${port}/foods`;
 
 export const remove = (val) => {
     axios.delete(basePath + '/all/' + val)
