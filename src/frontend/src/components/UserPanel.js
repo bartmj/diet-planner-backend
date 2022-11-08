@@ -173,6 +173,13 @@ class UserPanel extends React.Component {
                 name="kcalPer100g"
                 value={this.state.kcalPer100g}
                 onChange={this.handleChange} />
+
+            <button
+                className="add-button"
+                onClick={this.addObjectToArray}>
+                Add food
+            </button>
+
             {this.state.foods.map(food => {
                 return (
                     <div key={food.id}>
@@ -185,12 +192,6 @@ class UserPanel extends React.Component {
                     </div>
                 );
             })}
-
-            <button
-                className="add-button"
-                onClick={this.addObjectToArray}>
-                Add food
-            </button>
 
         </>
     }
