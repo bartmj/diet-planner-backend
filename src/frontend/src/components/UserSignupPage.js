@@ -1,7 +1,35 @@
 import Input from './Input';
 import ButtonWithProgress from './ButtonWithProgress';
+import {useState} from "react";
 
-const UserSignupPage = () => {
+const UserSignupPage = (props) => {
+
+    const [form, setForm] = useState({
+        username: '',
+        password: '',
+        passwordRepeat: ''
+    })
+
+    const onClickSignup = () => {
+        const user = {
+            username: form.username,
+            password: form.password
+        };
+        // setPendingApiCall(true);
+
+        //  TODO:
+        props.actions
+            .postSignup(user)
+            .then((response) => {
+                props.history.push('/');
+            })
+            // .catch((apiError) => {
+            //     if (apiError.response.data && apiError.response.data.validationErrors) {
+            //         setErrors(apiError.response.data.validationErrors);
+            //     }
+            //     setPendingApiCall(false);
+            // });
+    };
 
     return (
         <div className="container">
