@@ -1,9 +1,10 @@
 import Input from './Input';
 import ButtonWithProgress from './ButtonWithProgress';
-import {useState} from "react";
+import { useState } from "react";
+import { connect } from 'react-redux';
+import * as authActions from '../redux/authActions';
 
 const UserSignupPage = (props) => {
-
     const [form, setForm] = useState({
         username: '',
         password: '',
@@ -18,11 +19,10 @@ const UserSignupPage = (props) => {
         // setPendingApiCall(true);
 
         //  TODO:
-        props.actions
-            .postSignup(user)
-            .then((response) => {
-                props.history.push('/');
-            })
+        props.actions.postSignup(user)
+            // .then((response) => {
+            //     props.history.push('/');
+            // })
             // .catch((apiError) => {
             //     if (apiError.response.data && apiError.response.data.validationErrors) {
             //         setErrors(apiError.response.data.validationErrors);
@@ -92,4 +92,23 @@ const UserSignupPage = (props) => {
     );
 }
 
+UserSignupPage.defaultProps = {
+    actions: {
+        postSignup: () =>
+            new Promise((resolve, reject) => {
+                resolve({});
+            })
+    }
+};
+
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         actions: {
+//             postSignup: (user) => dispatch(authActions.signupHandler(user))
+//         }
+//     };
+// };
+
 export default UserSignupPage;
+
+// export default connect(null, mapDispatchToProps)(UserSignupPage);
