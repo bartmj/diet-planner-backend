@@ -133,7 +133,7 @@ class UserPanel extends React.Component {
     }
 
     render() {
-        return <>
+        return <div className="container">
             <h3>Total calories {Math.round(this.state.totalDayKcal * 100) / 100}kcal</h3>
             <h3>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h3>
 
@@ -192,8 +192,7 @@ class UserPanel extends React.Component {
                     </div>
                 );
             })}
-
-        </>
+        </div>
     }
 }
 

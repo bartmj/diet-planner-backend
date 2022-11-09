@@ -1,4 +1,5 @@
 POST http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/foods/add
+#POST http://localhost:5000/foods/add
 Accept: application/json
 Content-Type: application/json
 
