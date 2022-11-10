@@ -4,6 +4,10 @@ import com.example.dietplanner.user.model.EnumRole;
 import com.example.dietplanner.user.model.Role;
 import com.example.dietplanner.user.model.User;
 import com.example.dietplanner.user.payload.JwtResponse;
+import com.example.dietplanner.user.payload.MessageResponse;
+import com.example.dietplanner.user.repository.RoleRepository;
+import com.example.dietplanner.user.repository.UserRepository;
+import com.example.dietplanner.user.security.jwt.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +60,12 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
         if (userRepository.existsByUsername(signupRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username is already in use!"));
+        }
+
+        if (userRepository.existsByEmail(signupRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already in use!"));
