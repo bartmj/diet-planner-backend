@@ -3,9 +3,14 @@ package com.example.dietplanner.user.rest;
 import com.example.dietplanner.user.model.EnumRole;
 import com.example.dietplanner.user.model.Role;
 import com.example.dietplanner.user.model.User;
+import com.example.dietplanner.user.payload.JwtResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
