@@ -1,12 +1,15 @@
 package com.example.dietplanner.user.rest;
 
-import com.example.dietplanner.user.User;
+import com.example.dietplanner.user.model.EnumRole;
+import com.example.dietplanner.user.model.Role;
+import com.example.dietplanner.user.model.User;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -62,24 +65,24 @@ public class AuthController {
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+            Role userRole = roleRepository.findByName(EnumRole.ROLE_USER)
                     .orElseThrow(() -> new RuntimeException("Error: role not found."));
             roles.add(userRole);
         } else {
             for (String role : strRoles) {
                 switch (role) {
                     case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                        Role adminRole = roleRepository.findByName(EnumRole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: role not found."));
                         roles.add(adminRole);
                         break;
                     case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
+                        Role modRole = roleRepository.findByName(EnumRole.ROLE_MODERATOR)
                                 .orElseThrow(() -> new RuntimeException("Error: role not found."));
                         roles.add(modRole);
                         break;
                     default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                        Role userRole = roleRepository.findByName(EnumRole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException("Error: role not found."));
                         roles.add(userRole);
                 }
