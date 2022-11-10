@@ -1,4 +1,4 @@
-package com.example.dietplanner.foods.adapters;
+package com.example.dietplanner.user.rest;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
