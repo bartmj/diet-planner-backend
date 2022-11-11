@@ -18,7 +18,7 @@ public class JwtUtils {
     @Value("${diet.app.jwtSecret}")
     private String jwsSecret;
 
-    @Value("${diet.app.jwtExpiration}")
+    @Value("${diet.app.jwtExpirationMs}")
     private String jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {
