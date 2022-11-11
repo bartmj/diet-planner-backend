@@ -1,5 +1,6 @@
 package com.example.dietplanner.user.security.jwt;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import com.example.dietplanner.user.security.services.UserDetailsServiceImpl;
@@ -17,13 +18,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@AllArgsConstructor
+
 public class AuthTokenFilter extends OncePerRequestFilter {
 
     private JwtUtils jwtUtils;
+
     private UserDetailsServiceImpl userDetailsService;
 
+    public AuthTokenFilter(UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+    @Autowired
+    public void setJwtUtils(JwtUtils jwtUtils) {
+        this.jwtUtils = jwtUtils;
+    }
+
     public static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
