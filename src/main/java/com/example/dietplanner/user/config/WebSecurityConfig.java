@@ -1,5 +1,6 @@
 package com.example.dietplanner.user.config;
 
+import com.example.dietplanner.user.security.jwt.AuthEntryPointJwt;
 import com.example.dietplanner.user.security.jwt.AuthTokenFilter;
 import com.example.dietplanner.user.security.services.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;

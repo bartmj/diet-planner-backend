@@ -12,6 +12,14 @@ public class JwtUtils {
 
     public static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
+    public String getUserNameFromJwtToken(String jwt) {
+        return "";
+    }
+
+    public boolean validateJwtToken() {
+        return true;
+    }
+
 //    @Value("${diet.app.jwtSecret}")
 //    private String jwsSecret;
 //
@@ -22,6 +30,5 @@ public class JwtUtils {
 //
 //        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 //    }
-
 
 }
