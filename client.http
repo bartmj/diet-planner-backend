@@ -94,8 +94,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "password": "admin"
+  "username": "user1",
+  "password": "user1"
 }
 
 ### SIGN IN AS MODERATOR
