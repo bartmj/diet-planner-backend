@@ -8,7 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalUnit;
 import java.util.Date;
+import java.time.*;
 
 @Component
 public class JwtUtils {
@@ -28,7 +31,7 @@ public class JwtUtils {
         return Jwts.builder()
                 .setSubject(userPrincipal.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + jwtExpirationMs))
+                .setExpiration(new Date(new Date().getTime() + Integer.parseInt(this.jwtExpirationMs)))
                 .signWith(SignatureAlgorithm.HS512, jwsSecret)
                 .compact();
     }
