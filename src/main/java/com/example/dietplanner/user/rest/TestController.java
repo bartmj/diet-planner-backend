@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/test")
 public class TestController {
+
     @GetMapping("/all")
     public String allAccess() {
-        return "Public Contetnt";
+        return "Public Content";
     }
+
     @GetMapping("/user")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String userAccess() {
         return "User Content";
     }
@@ -25,5 +27,11 @@ public class TestController {
     @PreAuthorize("hasRole('ADMIN')")
     public String adminAccess() {
         return "Admin board";
+    }
+
+    @GetMapping("/mod")
+    @PreAuthorize("hasRole('MODERATOR')")
+    public String modAccess() {
+        return "Moderator board";
     }
 }

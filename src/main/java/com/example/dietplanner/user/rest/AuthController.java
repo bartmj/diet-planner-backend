@@ -11,6 +11,7 @@ import com.example.dietplanner.user.repository.RoleRepository;
 import com.example.dietplanner.user.repository.UserRepository;
 import com.example.dietplanner.user.security.jwt.JwtUtils;
 import com.example.dietplanner.user.security.services.UserDetailsImpl;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/auth")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class AuthController {
 
     AuthenticationManager authenticationManager;
@@ -98,7 +99,8 @@ public class AuthController {
                         roles.add(adminRole);
                     }
                     case "mod" -> {
-                        Role modRole = roleRepository.findByName(EnumRole.ROLE_MODERATOR)
+//                        Role modRole =
+                        var modRole = roleRepository.findByName(EnumRole.ROLE_MODERATOR)
                                 .orElseThrow(() -> new RuntimeException("Error: role not found."));
                         roles.add(modRole);
                     }
