@@ -83,6 +83,14 @@ public class AuthController {
                 signupRequest.getEmail(),
                 encoder.encode(signupRequest.getPassword()));
 
+        Set<Role> roles = getRoles(signupRequest);
+        user.setRoles(roles);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully"));
+    }
+
+    private Set<Role> getRoles(SignupRequest signupRequest) {
         Set<String> strRoles = signupRequest.getRole();
         Set<Role> roles = new HashSet<>();
 
@@ -112,10 +120,7 @@ public class AuthController {
                 }
             }
         }
-        user.setRoles(roles);
-        userRepository.save(user);
-
-        return ResponseEntity.ok(new MessageResponse("User registered successfully"));
+        return roles;
     }
 
 }

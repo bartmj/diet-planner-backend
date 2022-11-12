@@ -34,5 +34,29 @@ Content-Type: application/json
   "role": ["admin", "mod", "user"]
 }
 
+###
+POST http://localhost:5000/api/auth/signup
+Accept: application/json
+Content-Type: application/json
+
+{
+"username": "bartmj_mod",
+"email": "bj90_mod@wp.pl",
+"password": "mod",
+"role": ["mod", "user"]
+}
+
+###
+POST http://localhost:5000/api/auth/signup
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "email": "user1@wp.pl",
+  "password": "user1",
+  "role": ["user"]
+}
+
 
 
