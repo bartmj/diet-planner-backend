@@ -12,7 +12,6 @@ import com.example.dietplanner.user.repository.UserRepository;
 import com.example.dietplanner.user.security.jwt.JwtUtils;
 import com.example.dietplanner.user.security.services.UserDetailsImpl;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +26,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 
-import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -55,7 +53,7 @@ public class AuthController {
 
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.toList());
+                .toList();
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
@@ -106,7 +104,6 @@ public class AuthController {
                         roles.add(adminRole);
                     }
                     case "mod" -> {
-//                        Role modRole =
                         var modRole = roleRepository.findByName(EnumRole.ROLE_MODERATOR)
                                 .orElseThrow(() -> new RuntimeException("Error: role not found."));
                         roles.add(modRole);
