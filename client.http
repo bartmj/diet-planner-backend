@@ -30,8 +30,8 @@ Content-Type: application/json
 {
   "username": "bartmj",
   "email": "bj90@wp.pl",
-  "password": "mod",
-  "role": ["mod", "user"]
+  "password": "admin",
+  "role": ["admin", "mod", "user"]
 }
 
 
