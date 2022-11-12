@@ -46,7 +46,7 @@ Content-Type: application/json
 "role": ["mod", "user"]
 }
 
-###
+### CREATE USER 1
 POST http://localhost:5000/api/auth/signup
 Accept: application/json
 Content-Type: application/json
@@ -58,5 +58,62 @@ Content-Type: application/json
   "role": ["user"]
 }
 
+### CREATE USER 2
+POST http://localhost:5000/api/auth/signup
+Accept: application/json
+Content-Type: application/json
 
+{
+  "username": "user2",
+  "email": "user1@wp.pl",
+  "password": "1234567",
+  "role": ["user"]
+}
 
+###
+GET http://localhost:5000/api/test/all
+Accept: application/json
+
+###
+GET http://localhost:5000/api/test/user
+Accept: application/json
+
+### SIGN IN AS USER
+POST http://localhost:5000/api/auth/signin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "user1"
+}
+
+### SIGN IN AS ADMIN
+POST http://localhost:5000/api/auth/signin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+### SIGN IN AS MODERATOR
+POST http://localhost:5000/api/auth/signin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "bartmj_mod",
+  "password": "mod"
+}
+
+### SIGN IN AS ADMIN
+POST http://localhost:5000/api/auth/signin
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "bartmj",
+  "password": "admin"
+}
