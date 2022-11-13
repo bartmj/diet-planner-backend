@@ -45,6 +45,10 @@ nav li {
   grid-template-columns: 1fr 1fr;
 }
 
+.success {
+  color: forestgreen;
+}
+
 /*@media only screen and (max-width: 992px) {*/
 
 /*}*/

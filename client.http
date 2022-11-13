@@ -59,12 +59,12 @@ Content-Type: application/json
 
 ### SIGNUP USER 2
 POST http://localhost:5000/api/auth/signup
-Accept: application/json
+#Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user333",
-  "email": "user333@wp.pl",
+  "username": "user023432733",
+  "email": "user034332733@wp.pl",
   "password": "1234567",
   "role": ["user"]
 }
@@ -83,7 +83,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user1",
+  "username": "user100",
   "password": "user1"
 }
 

@@ -5,7 +5,6 @@ import com.example.dietplanner.user.model.Role;
 import com.example.dietplanner.user.model.User;
 import com.example.dietplanner.user.payload.JwtResponse;
 import com.example.dietplanner.user.payload.LoginRequest;
-import com.example.dietplanner.user.payload.MessageResponse;
 import com.example.dietplanner.user.payload.SignupRequest;
 import com.example.dietplanner.user.repository.RoleRepository;
 import com.example.dietplanner.user.repository.UserRepository;
@@ -16,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +51,7 @@ public class AuthController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
         List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .toList();
 
         return ResponseEntity.ok(new JwtResponse(jwt,
@@ -67,13 +67,13 @@ public class AuthController {
         if (userRepository.existsByUsername(signupRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Username is already in use!"));
+                    .body("Error: Username is already in use!");
         }
 
         if (userRepository.existsByEmail(signupRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                    .body("Error: Email is already in use!");
         }
 
         // Create new user's account
@@ -84,7 +84,8 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully"));
+        return ResponseEntity.ok()
+                .body("User registered successfully!");
     }
 
     private Set<Role> getRoles(SignupRequest signupRequest) {

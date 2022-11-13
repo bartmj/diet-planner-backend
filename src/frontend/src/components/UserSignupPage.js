@@ -6,7 +6,8 @@ const UserSignupPage = (props) => {
         username: '',
         email: '',
         password: '',
-        passwordRepeat: ''
+        passwordRepeat: '',
+        info: ''
     })
 
     const onClickSignup = () => {
@@ -14,18 +15,21 @@ const UserSignupPage = (props) => {
             username: form.username,
             email: form.email,
             password: form.password,
-            role: ['user']
+            role: ['user'],
         };
         apiCalls.signup(user).then(response => {
-            console.log(response)
+            // console.log(response)
+            setForm(() => {
+                return {
+                    username: '',
+                    email: '',
+                    password: '',
+                    passwordRepeat: '',
+                    info: response.data
+                }
+            })
         })
-        // {
-        //     "username": "user1",
-        //     "email": "user1@wp.pl",
-        //     "password": "user1",
-        //     "role": ["user"]
-        // }
-    };
+    }
 
     const handleChange = (e) => {
         const { value, name } = e.target;
@@ -49,6 +53,7 @@ const UserSignupPage = (props) => {
                     name="username"
                     // placeholder="Your username"
                     onChange={handleChange}
+                    value={form.username}
                 />
             </div>
             <div className="col-12 mb-3">
@@ -57,6 +62,7 @@ const UserSignupPage = (props) => {
                     name="email"
                     // placeholder="Your email"
                     onChange={handleChange}
+                    value={form.email}
                 />
             </div>
             <div className="col-12 mb-3">
@@ -66,6 +72,7 @@ const UserSignupPage = (props) => {
                     // placeholder="Your password"
                     type="password"
                     onChange={handleChange}
+                    value={form.password}
                 />
             </div>
             <div className="col-12 mb-3">
@@ -75,6 +82,7 @@ const UserSignupPage = (props) => {
                     // placeholder="Repeat your password"
                     type="password"
                     onChange={handleChange}
+                    value={form.passwordRepeat}
                 />
             </div>
             <div className="text-center">
@@ -84,6 +92,7 @@ const UserSignupPage = (props) => {
                     Sign up
                 </button>
             </div>
+            <p className="success">{form.info}</p>
         </div>
     );
 }
