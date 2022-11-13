@@ -16,7 +16,6 @@ Content-Type: application/json
 }
 
 ###
-
 GET http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/foods/all
 Accept: application/json
 Content-Type: application/json
@@ -117,3 +116,18 @@ Content-Type: application/json
   "username": "bartmj",
   "password": "admin"
 }
+
+### See user content
+GET http://localhost:5000/api/test/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXJ0bWoiLCJpYXQiOjE2NjgzNDQyMzcsImV4cCI6MTY2ODQzMDYzN30.1pSkhWXFiswa0dFbT_h2LjMXF1pDiwTf0gAekmv98IUy0XSsaCnQTKjnfpb-2UagUqCvdcabh8w6Y4bt3ti64g
+
+### See admin content
+GET http://localhost:5000/api/test/admin
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXJ0bWoiLCJpYXQiOjE2NjgzNDQyMzcsImV4cCI6MTY2ODQzMDYzN30.1pSkhWXFiswa0dFbT_h2LjMXF1pDiwTf0gAekmv98IUy0XSsaCnQTKjnfpb-2UagUqCvdcabh8w6Y4bt3ti64g
+
+### See moderator content
+GET http://localhost:5000/api/test/mod
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXJ0bWoiLCJpYXQiOjE2NjgzNDQyMzcsImV4cCI6MTY2ODQzMDYzN30.1pSkhWXFiswa0dFbT_h2LjMXF1pDiwTf0gAekmv98IUy0XSsaCnQTKjnfpb-2UagUqCvdcabh8w6Y4bt3ti64g
