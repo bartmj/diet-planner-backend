@@ -39,10 +39,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-"username": "bartmj_mod",
-"email": "bj90_mod@wp.pl",
-"password": "mod",
-"role": ["mod", "user"]
+  "username": "bartmj_mod",
+  "email": "bj90_mod@wp.pl",
+  "password": "mod",
+  "role": ["mod", "user"]
 }
 
 ### SIGNUP USER 1
@@ -57,23 +57,23 @@ Content-Type: application/json
   "role": ["user"]
 }
 
-### CREATE USER 2
+### SIGNUP USER 2
 POST http://localhost:5000/api/auth/signup
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user3",
-  "email": "user3@wp.pl",
+  "username": "user333",
+  "email": "user333@wp.pl",
   "password": "1234567",
   "role": ["user"]
 }
 
-###
+### TEST ALL
 GET http://localhost:5000/api/test/all
 Accept: application/json
 
-###
+### TEST USER
 GET http://localhost:5000/api/test/user
 Accept: application/json
 
