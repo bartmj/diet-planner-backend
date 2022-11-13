@@ -33,7 +33,7 @@ Content-Type: application/json
   "role": ["admin", "mod", "user"]
 }
 
-###
+### SIGNUP MODERATOR
 POST http://localhost:5000/api/auth/signup
 Accept: application/json
 Content-Type: application/json
@@ -45,7 +45,7 @@ Content-Type: application/json
 "role": ["mod", "user"]
 }
 
-### CREATE USER 1
+### SIGNUP USER 1
 POST http://localhost:5000/api/auth/signup
 Accept: application/json
 Content-Type: application/json
@@ -63,8 +63,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user2",
-  "email": "user1@wp.pl",
+  "username": "user3",
+  "email": "user3@wp.pl",
   "password": "1234567",
   "role": ["user"]
 }
@@ -120,12 +120,12 @@ Content-Type: application/json
 ### See user content
 GET http://localhost:5000/api/test/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXJ0bWoiLCJpYXQiOjE2NjgzNDQyMzcsImV4cCI6MTY2ODQzMDYzN30.1pSkhWXFiswa0dFbT_h2LjMXF1pDiwTf0gAekmv98IUy0XSsaCnQTKjnfpb-2UagUqCvdcabh8w6Y4bt3ti64g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTY2ODM0NDUxNCwiZXhwIjoxNjY4NDMwOTE0fQ.IZcBv8G3Cbjqx-MymtlCb78I8QE5LWA7i_Yw3sHmrGwGBX1AROeA5ol24bjauUeK7zfWjah9kciAAfBQb-Iecg
 
 ### See admin content
 GET http://localhost:5000/api/test/admin
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXJ0bWoiLCJpYXQiOjE2NjgzNDQyMzcsImV4cCI6MTY2ODQzMDYzN30.1pSkhWXFiswa0dFbT_h2LjMXF1pDiwTf0gAekmv98IUy0XSsaCnQTKjnfpb-2UagUqCvdcabh8w6Y4bt3ti64g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTY2ODM0NDUxNCwiZXhwIjoxNjY4NDMwOTE0fQ.IZcBv8G3Cbjqx-MymtlCb78I8QE5LWA7i_Yw3sHmrGwGBX1AROeA5ol24bjauUeK7zfWjah9kciAAfBQb-Iecg
 
 ### See moderator content
 GET http://localhost:5000/api/test/mod

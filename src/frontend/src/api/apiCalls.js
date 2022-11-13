@@ -18,3 +18,12 @@ export const getAll = () => {
     return axios.get(basePath + '/all');
 }
 
+export const signup = (requestObj) => {
+    let url = 'http://localhost:5000/api/auth/signup'
+    return axios.post(url, requestObj);
+}
+
+export function signIn(user) {
+    let url = 'http://localhost:5000/api/auth/signin'
+    return axios.post(url, user);
+}

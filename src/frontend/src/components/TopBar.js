@@ -21,24 +21,21 @@ export const TopBar = (props) => {
                                     className="link"
                                     to="/">Home
                                 </Link>
-                                {/*<Link to="/signup" className="nav-link">*/}
-                                {/*    Sign Up*/}
-                                {/*</Link>*/}
                             </li>
                             <li className="nav-item">
                                 <Link
                                     className="link"
                                     to="/signup">Signup
                                 </Link>
-                                {/*<Link to="/login" className="nav-link">*/}
-                                {/*    Login*/}
-                                {/*</Link>*/}
+                            </li>
+                            <li className="nav-item">
+                                <Link
+                                    className="link"
+                                    to="/signin">Login
+                                </Link>
                             </li>
                         </ul>
                     </div>
-                    {/*<Link to="/" className="navbar-brand">*/}
-                    {/*    <img src={logo} width="60" alt="Hoaxify" /> Hoaxify*/}
-                    {/*</Link>*/}
                 </nav>
             </div>
         </div>
