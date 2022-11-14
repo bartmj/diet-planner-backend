@@ -7,10 +7,17 @@ const UserSignupPage = (props) => {
         email: '',
         password: '',
         passwordRepeat: '',
-        info: ''
     })
+    const [errors, setError] = useState('');
+    const [info, setInfo] = useState('');
 
     const onClickSignup = () => {
+        if (form.password !== form.passwordRepeat) {
+            setError(() => {
+                return 'Password fields have different values!';
+            })
+            return;
+        }
         let user = {
             username: form.username,
             email: form.email,
@@ -25,11 +32,19 @@ const UserSignupPage = (props) => {
                     email: '',
                     password: '',
                     passwordRepeat: '',
-                    info: response.data
                 }
             })
+            setInfo(() => {
+                return response.data
+            })
+        }).catch(apiError => {
+            if (apiError.response.data) {
+                setError(apiError.response.data);
+            }
         })
     }
+
+
 
     const handleChange = (e) => {
         const { value, name } = e.target;
@@ -40,6 +55,12 @@ const UserSignupPage = (props) => {
                 [name]: value
             };
         });
+    }
+
+    function handleFocus() {
+        setError(() => {
+            return '';
+        })
     }
 
     return (
@@ -53,6 +74,7 @@ const UserSignupPage = (props) => {
                     name="username"
                     onChange={handleChange}
                     value={form.username}
+                    onFocus={handleFocus}
                 />
             </div>
             <div className="col-12 mb-3">
@@ -61,6 +83,7 @@ const UserSignupPage = (props) => {
                     name="email"
                     onChange={handleChange}
                     value={form.email}
+                    onFocus={handleFocus}
                 />
             </div>
             <div className="col-12 mb-3">
@@ -70,6 +93,7 @@ const UserSignupPage = (props) => {
                     type="password"
                     onChange={handleChange}
                     value={form.password}
+                    onFocus={handleFocus}
                 />
             </div>
             <div className="col-12 mb-3">
@@ -79,6 +103,7 @@ const UserSignupPage = (props) => {
                     type="password"
                     onChange={handleChange}
                     value={form.passwordRepeat}
+                    onFocus={handleFocus}
                 />
             </div>
             <div className="text-center">
@@ -89,6 +114,7 @@ const UserSignupPage = (props) => {
                 </button>
             </div>
             <p className="success">{form.info}</p>
+            <p className="error">{errors}</p>
         </div>
     );
 }

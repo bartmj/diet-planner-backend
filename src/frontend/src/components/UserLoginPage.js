@@ -4,8 +4,7 @@ import React, {useState} from "react";
 const UserLoginPage = () => {
     const [form, setForm] = useState({
         username: '',
-        password: '',
-        passwordRepeat: ''
+        password: ''
     })
 
     const handleChange = (e) => {
@@ -29,7 +28,7 @@ const UserLoginPage = () => {
 
     return (
         <div className="container">
-            <h1 className="text-center">Sign In</h1>
+            <h1 className="text-center">Log In</h1>
             <div className="col-12 mb-3">
             </div>
             <div className="col-12 mb-3">
@@ -37,6 +36,7 @@ const UserLoginPage = () => {
                 <input
                     name="username"
                     onChange={handleChange}
+                    value={form.username}
                 />
             </div>
             <div className="col-12 mb-3">
@@ -45,6 +45,7 @@ const UserLoginPage = () => {
                     name="password"
                     type="password"
                     onChange={handleChange}
+                    value={form.password}
                 />
             </div>
             <div className="text-center">

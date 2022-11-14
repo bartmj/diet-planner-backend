@@ -49,6 +49,10 @@ nav li {
   color: forestgreen;
 }
 
+.error {
+  color: red;
+}
+
 /*@media only screen and (max-width: 992px) {*/
 
 /*}*/
