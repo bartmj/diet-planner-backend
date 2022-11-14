@@ -113,7 +113,7 @@ const UserSignupPage = (props) => {
                     Sign up
                 </button>
             </div>
-            <p className="success">{form.info}</p>
+            <p className="success">{info}</p>
             <p className="error">{errors}</p>
         </div>
     );
