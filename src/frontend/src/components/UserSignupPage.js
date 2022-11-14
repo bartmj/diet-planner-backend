@@ -51,7 +51,6 @@ const UserSignupPage = (props) => {
                 <label>username</label>
                 <input
                     name="username"
-                    // placeholder="Your username"
                     onChange={handleChange}
                     value={form.username}
                 />
@@ -60,7 +59,6 @@ const UserSignupPage = (props) => {
                 <label>email</label>
                 <input
                     name="email"
-                    // placeholder="Your email"
                     onChange={handleChange}
                     value={form.email}
                 />
@@ -69,7 +67,6 @@ const UserSignupPage = (props) => {
                 <label>password</label>
                 <input
                     name="password"
-                    // placeholder="Your password"
                     type="password"
                     onChange={handleChange}
                     value={form.password}
@@ -79,7 +76,6 @@ const UserSignupPage = (props) => {
                 <label>repeat password</label>
                 <input
                     name="passwordRepeat"
-                    // placeholder="Repeat your password"
                     type="password"
                     onChange={handleChange}
                     value={form.passwordRepeat}

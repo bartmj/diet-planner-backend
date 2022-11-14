@@ -10,16 +10,6 @@ function App() {
 
   return (
     <div className="App">
-      {/*  <title>Diet Planner - Project</title>*/}
-      {/*  <TopBar/>*/}
-      {/*<header className="App-header">*/}
-      {/*  <div className="container">*/}
-      {/*    <h1>Diet Planner</h1>*/}
-      {/*  </div>*/}
-      {/*</header>*/}
-      {/*<section className="container">*/}
-      {/*  <UserPanel />*/}
-      {/*</section>*/}
         <BrowserRouter>
             <TopBar/>
             <Routes>
@@ -28,7 +18,6 @@ function App() {
                 <Route path="/signin" element={<UserLoginPage />} />
             </Routes>
         </BrowserRouter>
-
     </div>
   );
 }
