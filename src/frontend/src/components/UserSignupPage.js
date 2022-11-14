@@ -39,7 +39,8 @@ const UserSignupPage = (props) => {
             })
         }).catch(apiError => {
             if (apiError.response.data) {
-                setError(apiError.response.data);
+                // setError(apiError.response.data);
+                console.log(apiError.response)
             }
         })
     }
