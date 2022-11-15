@@ -38,7 +38,8 @@ const UserSignupPage = (props) => {
                 return response.data
             })
         }).catch(apiError => {
-            if (apiError.response.data && apiError.response.data.validationErrors) {
+            if (apiError.response.data) {
+                console.log(apiError.response)
                 setErrors(apiError.response.data.validationErrors);
             }
         })

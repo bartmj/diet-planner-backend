@@ -1,10 +1,7 @@
 package com.example.dietplanner.user.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,19 +19,17 @@ public class User {
     private Long id;
 
     @NotBlank(message = "Username must not be empty!")
-    @Size(max = 20)
-    @Min(3)
-    @Max(30)
+    @Size(min=3, max = 20, message = "Username length must be between 3 nd 20.")
     private String username;
 
     @NotBlank
-    @Size(max = 50)
-    @Min(4)
-    @Max(30)
+    @Size(min=3, max = 20, message = "Email length must be between 3 nd 20.")
+    @Email
     private String email;
 
     @NotBlank
     @Size(max = 120)
+    @Size(min=8, message = "Password length must be at least 8 characters.")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
