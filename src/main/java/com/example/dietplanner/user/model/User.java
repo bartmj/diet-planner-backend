@@ -28,8 +28,7 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(max = 120)
-    @Size(min=8, message = "Password length must be at least 8 characters.")
+    @Size(min=8, max= 30, message = "Password length must be between 8 nd 30.")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
