@@ -8,13 +8,13 @@ const UserSignupPage = (props) => {
         password: '',
         passwordRepeat: '',
     })
-    const [errors, setError] = useState('');
+    const [errors, setErrors] = useState({});
     const [info, setInfo] = useState('');
 
     const onClickSignup = () => {
         if (form.password !== form.passwordRepeat) {
-            setError(() => {
-                return 'Password fields have different values!';
+            setErrors(() => {
+                return {passwordMatch: 'Password fields have different values!'};
             })
             return;
         }
@@ -38,8 +38,9 @@ const UserSignupPage = (props) => {
                 return response.data
             })
         }).catch(apiError => {
-            if (apiError.response.data) {
-                // setError(apiError.response.data);
+            if (apiError.response.data && apiError.response.data.validationErrors) {
+                setErrors(apiError.response.data.validationErrors);
+                console.log("Elo")
                 console.log(apiError.response)
             }
         })
@@ -59,7 +60,7 @@ const UserSignupPage = (props) => {
     }
 
     function handleFocus() {
-        setError(() => {
+        setErrors(() => {
             return '';
         })
     }
@@ -77,6 +78,7 @@ const UserSignupPage = (props) => {
                     value={form.username}
                     onFocus={handleFocus}
                 />
+                <p className="error">{errors.username}</p>
             </div>
             <div className="col-12 mb-3">
                 <label>email</label>
@@ -86,6 +88,7 @@ const UserSignupPage = (props) => {
                     value={form.email}
                     onFocus={handleFocus}
                 />
+                <p className="error">{errors.email}</p>
             </div>
             <div className="col-12 mb-3">
                 <label>password</label>
@@ -96,6 +99,7 @@ const UserSignupPage = (props) => {
                     value={form.password}
                     onFocus={handleFocus}
                 />
+                <p className="error">{errors.password}</p>
             </div>
             <div className="col-12 mb-3">
                 <label>repeat password</label>
@@ -115,7 +119,7 @@ const UserSignupPage = (props) => {
                 </button>
             </div>
             <p className="success">{info}</p>
-            <p className="error">{errors}</p>
+            <p className="error">{errors.passwordMatch}</p>
         </div>
     );
 }

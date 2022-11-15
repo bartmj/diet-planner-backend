@@ -45,15 +45,15 @@ Content-Type: application/json
   "role": ["mod", "user"]
 }
 
-### SIGNUP USER 1
+### SIGN UP USER 1
 POST http://localhost:5000/api/auth/signup
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "",
-  "email": "user1678@wp.pl",
-  "password": "user1",
+  "username": "tom",
+  "email": "user65755464534231678@wp.pl",
+  "password": "1",
   "role": ["user"]
 }
 
