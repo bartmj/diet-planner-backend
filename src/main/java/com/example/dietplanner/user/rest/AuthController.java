@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.*;
 
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/auth")
@@ -112,7 +111,7 @@ public class AuthController {
             for (String role : strRoles) {
                 switch (role) {
                     case "admin" -> {
-                        Role adminRole = roleRepository.findByName()
+                        Role adminRole = roleRepository.findByName(EnumRole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException("Error: role not found."));
                         roles.add(adminRole);
                     }
