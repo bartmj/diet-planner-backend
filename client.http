@@ -51,8 +51,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "tom",
-  "email": "user65755464534231678@wp.pl",
+  "username": "tom1",
+  "email": "tom153@wp.pl",
   "password": "1",
   "role": ["user"]
 }

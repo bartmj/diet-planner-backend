@@ -1,6 +1,8 @@
 package com.example.dietplanner.user.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
@@ -19,12 +21,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Username must not be empty!")
     @Size(max = 20)
+    @Min(3)
+    @Max(30)
     private String username;
 
     @NotBlank
     @Size(max = 50)
+    @Min(4)
+    @Max(30)
     private String email;
 
     @NotBlank

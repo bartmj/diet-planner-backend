@@ -1,6 +1,5 @@
 package com.example.dietplanner.user.rest;
 
-import com.example.dietplanner.user.exception.ApiError;
 import com.example.dietplanner.user.model.EnumRole;
 import com.example.dietplanner.user.model.Role;
 import com.example.dietplanner.user.model.User;
@@ -66,15 +65,19 @@ public class AuthController {
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
 
         if (userRepository.existsByUsername(signupRequest.getUsername())) {
+            Map<String, String> validationErrors = new HashMap<>();
+            validationErrors.put("username", "Username already taken.");
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
-                    .body(new MessageResponse("Username already taken."));
+                    .body(new MessageResponse(validationErrors));
         }
 
         if (userRepository.existsByEmail(signupRequest.getEmail())) {
+            Map<String, String> validationErrors = new HashMap<>();
+            validationErrors.put("email", "Email is already in use!");
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                    .body(new MessageResponse(validationErrors));
         }
 
         // Create new user's account
@@ -83,10 +86,10 @@ public class AuthController {
                 encoder.encode(signupRequest.getPassword()));
         Set<Role> roles = getRoles(signupRequest);
         user.setRoles(roles);
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
 
         return ResponseEntity.ok()
-                .body(new MessageResponse("User registered successfully!"));
+                .body("Account has been created!");
     }
 
     private Set<Role> getRoles(SignupRequest signupRequest) {

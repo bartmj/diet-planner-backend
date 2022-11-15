@@ -3,6 +3,7 @@ package com.example.dietplanner.user.exception;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
+@Setter
 public class ApiError {
 
     private long timestamp = new Date().getTime();

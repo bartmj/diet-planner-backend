@@ -40,8 +40,6 @@ const UserSignupPage = (props) => {
         }).catch(apiError => {
             if (apiError.response.data && apiError.response.data.validationErrors) {
                 setErrors(apiError.response.data.validationErrors);
-                console.log("Elo")
-                console.log(apiError.response)
             }
         })
     }
