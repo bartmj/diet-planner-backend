@@ -64,6 +64,14 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
 
+        if (signupRequest.getPassword().length() < 8 || signupRequest.getPassword().length() > 30) {
+            Map<String, String> validationErrors = new HashMap<>();
+            validationErrors.put("password", "Password must be between 3 and 20 characters long.");
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body(new MessageResponse(validationErrors));
+        }
+
         if (userRepository.existsByUsername(signupRequest.getUsername())) {
             Map<String, String> validationErrors = new HashMap<>();
             validationErrors.put("username", "Username already taken.");
@@ -104,7 +112,7 @@ public class AuthController {
             for (String role : strRoles) {
                 switch (role) {
                     case "admin" -> {
-                        Role adminRole = roleRepository.findByName(EnumRole.ROLE_ADMIN)
+                        Role adminRole = roleRepository.findByName()
                                 .orElseThrow(() -> new RuntimeException("Error: role not found."));
                         roles.add(adminRole);
                     }

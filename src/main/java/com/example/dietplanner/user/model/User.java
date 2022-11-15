@@ -23,12 +23,11 @@ public class User {
     private String username;
 
     @NotBlank
-    @Size(min=3, max = 20, message = "Email length must be between 3 nd 20.")
+    @Size(min=3, max = 60, message = "Email length must be between 3 nd 20.")
     @Email
     private String email;
 
     @NotBlank
-    @Size(min=8, max= 30, message = "Password length must be between 8 nd 30.")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
