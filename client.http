@@ -27,9 +27,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "bartmj",
-  "email": "bj90@wp.pl",
-  "password": "admin",
+  "username": "a",
+  "email": "aaaaa@wp.pl",
+  "password": "a",
   "role": ["admin", "mod", "user"]
 }
 
@@ -93,8 +93,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user1",
-  "password": "user1"
+  "username": "a",
+  "password": "a"
 }
 
 ### SIGN IN AS MODERATOR

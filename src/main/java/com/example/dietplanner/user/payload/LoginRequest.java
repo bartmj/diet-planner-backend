@@ -1,5 +1,7 @@
 package com.example.dietplanner.user.payload;
 
+import java.lang.String;
+
 public class LoginRequest {
     private String username;
     private String password;
