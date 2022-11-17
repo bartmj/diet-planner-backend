@@ -1,5 +1,7 @@
 package com.example.dietplanner.user.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -20,15 +22,15 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(max = 20)
+    @Length(min = 3, max = 20)
     private String username;
 
     @NotBlank
-    @Size(max = 50)
+    @Length(min = 4, max = 50)
     private String email;
 
     @NotBlank
-    @Size(max = 120)
+    @Length(min = 8, max = 120)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
