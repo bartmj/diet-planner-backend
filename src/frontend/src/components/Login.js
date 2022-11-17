@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {clearMessage} from "../slices/message";
 import {login} from "../slices/auth";
 
-const Login = (props) => {
+const Login = () => {
     let navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
@@ -37,7 +37,6 @@ const Login = (props) => {
             .unwrap()
             .then(() => {
                 navigate("/profile");
-                window.location.reload();
             })
             .catch(() => {
                 setLoading(false);

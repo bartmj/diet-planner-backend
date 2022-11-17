@@ -76,7 +76,7 @@ const App = () => {
                               <div>
                                   <li>
                                       <Link to={"/profile"}>
-                                          {currentUser.username}
+                                          Profile
                                       </Link>
                                   </li>
                                   <li>

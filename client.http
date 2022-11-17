@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "id": null,
-  "name": "serko",
+  "name": "ser",
   "weight": 200,
   "proteinPer100g": 27,
   "fatsPer100g": 8,
@@ -27,9 +27,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "a",
-  "email": "aaaaa@wp.pl",
-  "password": "a",
+  "username": "admin",
+  "email": "admin@mail.com",
+  "password": "admin",
   "role": ["admin", "mod", "user"]
 }
 
@@ -39,8 +39,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "bartmj_mod",
-  "email": "bj90_mod@wp.pl",
+  "username": "mod",
+  "email": "mod@mail.pl",
   "password": "mod",
   "role": ["mod", "user"]
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Navigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
@@ -13,12 +13,11 @@ const Profile = () => {
         <div>
             <header>
                 <h3>
-                    <strong>{currentUser.username}</strong> Profile
+                    <strong>User: </strong> {currentUser.username}
                 </h3>
             </header>
             <p>
-                <strong>Token: </strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-                {currentUser.accessToken.substring(currentUser.accessToken.length - 20)}
+                <strong>Token: </strong> {currentUser.token.substring(0, 20)}
             </p>
             <p>
                 <strong>Id: </strong> {currentUser.id}
@@ -26,13 +25,13 @@ const Profile = () => {
             <p>
                 <strong>Email: </strong> {currentUser.email}
             </p>
-            <p>
+            <div>
                 <strong>Authorities: </strong> {currentUser.id}
                 <ul>
                     {currentUser.roles &&
                     currentUser.roles.map((role, index) => <li key={index}>{role}</li> )}
                 </ul>
-            </p>
+            </div>
         </div>
     )
 }
