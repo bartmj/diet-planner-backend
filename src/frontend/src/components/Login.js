@@ -49,6 +49,7 @@ const Login = (props) => {
     }
 
     return (
+        <>
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -75,5 +76,15 @@ const Login = (props) => {
                 </div>
             </Form>
         </Formik>
+            {message && (
+                <div>
+                    <div role="alert">
+                        {message}
+                    </div>
+                </div>
+            )}
+        </>
     )
 }
+
+export default Login;
