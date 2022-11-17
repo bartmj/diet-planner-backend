@@ -9,7 +9,7 @@ import { clearMessage } from "../slices/message";
 const Register = () => {
     const [successful, setSuccessful] = useState(false);
 
-    const [message, setMessage] = useSelector((state) => state.message());
+    const { message } = useSelector((state) => state.message);
 
     const dispatch = useDispatch();
 

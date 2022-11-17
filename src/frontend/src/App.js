@@ -47,7 +47,7 @@ const App = () => {
               <div>
                   <nav>
                       <Link to={"/"}>
-                          what
+                          Logo
                       </Link>
                       <div>
                           <li>
@@ -115,16 +115,6 @@ const App = () => {
                   </div>
               </div>
           </BrowserRouter>
-
-      // <div className="App">
-    //     <BrowserRouter>
-    //         <Routes>
-    //             <Route path="/" element={<UserPanel />} />
-    //             <Route path="/signup" element={<UserSignupPage />} />
-    //             <Route path="/signin" element={<UserLoginPage />} />
-    //         </Routes>
-    //     </BrowserRouter>
-    // </div>
   );
 }
 

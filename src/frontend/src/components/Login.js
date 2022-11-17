@@ -11,7 +11,7 @@ const Login = (props) => {
     const [loading, setLoading] = useState(false);
 
     const { isLoggedIn } = useSelector((state => state.auth));
-    const { message } = useSelector((state => state.message()))
+    const { message } = useSelector((state => state.message))
 
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const Login = (props) => {
 
     const validationSchema = Yup.object().shape({
         username: Yup.string().required("This field is required!"),
-        password: Yup.string.required("This field is required!"),
+        password: Yup.string().required("This field is required!"),
     });
 
     const handleLogin = (formValue) => {
