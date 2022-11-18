@@ -27,10 +27,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "bababa",
-  "email": "user645645@mail.com",
-  "password": "a",
-  "role": ["user"]
+  "username": "root",
+  "email": "root@gmail.com",
+  "password": "admin123",
+  "role": ["user", "mod", "admin"]
 }
 
 ### SIGNUP MODERATOR
@@ -83,8 +83,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "password": "admin"
+  "username": "root",
+  "password": "admin123"
 }
 
 ### SIGN IN AS ADMIN
@@ -120,7 +120,7 @@ Content-Type: application/json
 ### See user content
 GET http://localhost:5000/api/test/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTY2ODM0NDUxNCwiZXhwIjoxNjY4NDMwOTE0fQ.IZcBv8G3Cbjqx-MymtlCb78I8QE5LWA7i_Yw3sHmrGwGBX1AROeA5ol24bjauUeK7zfWjah9kciAAfBQb-Iecg
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb290IiwiaWF0IjoxNjY4Nzk0MTEzLCJleHAiOjE2Njg4ODA1MTN9.vf8RDABWqq-bO6iBLb7Z0aOllZcaS0Id2SqBbD-7TCvEPR50uY7N_5UY9ICoVaVoDoiE1N2Q2XXX70OA9kxflw
 
 ### See admin content
 GET http://localhost:5000/api/test/admin

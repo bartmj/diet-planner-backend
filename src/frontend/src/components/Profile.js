@@ -17,7 +17,7 @@ const Profile = () => {
                 </h3>
             </header>
             <p>
-                <strong>Token: </strong> {currentUser.token.substring(0, 20)}
+                <strong>Token: </strong> {currentUser.token}
             </p>
             <p>
                 <strong>Id: </strong> {currentUser.id}

@@ -72,6 +72,14 @@ const App = () => {
                               </li>
                           )}
 
+                          {currentUser && (
+                              <li>
+                                  <Link to={"/user"}>
+                                      User
+                                  </Link>
+                              </li>
+                          )}
+
                           {currentUser ? (
                               <div>
                                   <li>
