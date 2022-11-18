@@ -18,9 +18,9 @@ public class FoodPersistenceAdapter implements FoodRepository {
     private final FoodPersistenceMapper mapper;
 
     @Override
-    public Long saveFood(Food food) {
+    public FoodEntity saveFood(Food food) {
         var entity = mapper.toEntity(food);
-        return jpaFoodRepository.save(entity).getId();
+        return jpaFoodRepository.save(entity);
     }
 
     @Override

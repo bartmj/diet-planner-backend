@@ -9,11 +9,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/foods")
+@RequestMapping("/calc")
 public class FoodController {
 
     private final FoodService service;
@@ -21,7 +22,7 @@ public class FoodController {
 
     @CrossOrigin
     @PostMapping(value = "/add", consumes = "application/json")
-    public ResponseEntity<Long> sendFood(@RequestBody FoodDto foodDto) {
+    public ResponseEntity<Long> sendFood(@Valid @RequestBody FoodDto foodDto) {
         var food = foodRestMapper.toDomain(foodDto);
         var aLong = service.saveFood(food);
         return ResponseEntity

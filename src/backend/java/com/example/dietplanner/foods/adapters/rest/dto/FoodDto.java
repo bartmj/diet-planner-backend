@@ -29,5 +29,8 @@ public class FoodDto {
     Float fatsTotal;
     @NotNull
     Float kcalTotal;
+    @NotNull
+    Long userId;
+
 
 }

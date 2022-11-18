@@ -2,10 +2,7 @@ package com.example.dietplanner.foods.adapters.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -27,5 +24,7 @@ public class FoodEntity {
     private Float proteinTotal;
     private Float fatsTotal;
     private Float kcalTotal;
+    @Column(name = "user_id")
+    private Long userId;
 
 }

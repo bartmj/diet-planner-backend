@@ -18,5 +18,6 @@ public class Food {
     Float proteinTotal;
     Float fatsTotal;
     Float kcalTotal;
+    Long userId;
 
 }
