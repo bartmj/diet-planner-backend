@@ -1,5 +1,6 @@
 import React from 'react';
 import * as apiCalls from '../api/apiCalls';
+import store from '../store';
 
 const options = [
     { id: 1, value: 'chicken', proteinPer100g: 27, kcalPer100g: 239, fatsPer100g: 1 },
@@ -15,7 +16,6 @@ const options = [
 ]
 
 class UserPanel extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -32,11 +32,13 @@ class UserPanel extends React.Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
-
     }
+
+    state = store.getState();
 
     componentDidMount() {
         this.loadFoods();
+        console.log()
     }
 
     addObjectToArray = e => {
@@ -55,7 +57,8 @@ class UserPanel extends React.Component {
             kcalPer100g: this.state.kcalPer100g,
             proteinTotal: proteinPerFood,
             fatsTotal: fatsPerFood,
-            kcalTotal: kcalPerFood
+            kcalTotal: kcalPerFood,
+            userId: store.getState().auth.user.id
         }
 
         apiCalls.saveFood(dtoObj).then(response => {

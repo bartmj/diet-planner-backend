@@ -1,29 +1,19 @@
 import axios from 'axios';
-//
-// // const port = 5000
-//
-const rdsUrl = 'dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com'
+import authHeader from '../services/authHeader';
 
-const basePath = `http://${rdsUrl}/foods`;
-//
+const port = 5000
+// const rdsUrl = 'dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com'
+
+const basePath = `http://localhost:5000/calc`;
+
 export const remove = (val) => {
-    axios.delete(basePath + '/all/' + val);
+    axios.delete(basePath + '/all/' + val).then(r => {});
 }
 
 export const saveFood = (stoObj) => {
-    return axios.post(basePath + `/add`, stoObj);
+    return axios.post(basePath + `/add`, stoObj, { headers: authHeader()});
 }
 
 export const getAll = () => {
-    return axios.get(basePath + '/all');
+    return axios.get(basePath + '/all', { headers: authHeader()});
 }
-//
-// export const signup = (requestObj) => {
-//     let url = 'http://localhost:5000/api/auth/signup'
-//     return axios.post(url, requestObj);
-// }
-//
-// export function signIn(user) {
-//     let url = 'http://localhost:5000/api/auth/signin'
-//     return axios.post(url, user);
-// // }

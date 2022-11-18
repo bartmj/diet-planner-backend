@@ -11,6 +11,7 @@ import BoardAdmin from "./components/BoardAdmin";
 import BoardModerator from "./components/BoardModerator";
 import BoardUser from "./components/BoardUser";
 import Profile from "./components/Profile";
+import UserPanel from "./components/UserPanel";
 
 const App = () => {
     const [showModeratorBoard, setModeratorBoard] = useState(false);
@@ -80,6 +81,14 @@ const App = () => {
                               </li>
                           )}
 
+                          {currentUser && (
+                              <li>
+                                  <Link to={"/calc"}>
+                                      Macro Calc
+                                  </Link>
+                              </li>
+                          )}
+
                           {currentUser ? (
                               <div>
                                   <li>
@@ -117,6 +126,7 @@ const App = () => {
                           <Route path="/register" element={<Register/>} />
                           <Route path="/profile" element={<Profile/>} />
                           <Route path="/user" element={<BoardUser/>} />
+                          <Route path="/calc" element={<UserPanel/>} />
                           <Route path="/mod" element={<BoardModerator/>} />
                           <Route path="/admin" element={<BoardAdmin/>} />
                       </Routes>
