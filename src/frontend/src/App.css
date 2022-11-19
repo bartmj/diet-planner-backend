@@ -76,3 +76,8 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.flex-01 {
+  display: flex;
+  color: darkblue;
+}

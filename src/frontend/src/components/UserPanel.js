@@ -149,11 +149,9 @@ class UserPanel extends React.Component {
     render() {
         return <div className="container">
             <h1>Macro calculator</h1>
-            <h3>Total calories {Math.round(this.state.totalDayKcal * 100) / 100}kcal</h3>
-            <h3>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h3>
 
             <div className="form-group">
-                <label>food:</label>
+                <label>food: </label>
                 <input
                     id="multiselect"
                     type="text"
@@ -181,7 +179,7 @@ class UserPanel extends React.Component {
             </div>
 
             <div className="form-group">
-                <label>protein/100g:</label>
+                <label>protein/100g: </label>
                 <input
                     name="proteinPer100g"
                     value={this.state.proteinPer100g}
@@ -189,7 +187,7 @@ class UserPanel extends React.Component {
             </div>
 
             <div className="form-group">
-                <label>fats/100g</label>
+                <label>fats/100g: </label>
                 <input
                     name="fatsPer100g"
                     value={this.state.fatsPer100g}
@@ -197,25 +195,30 @@ class UserPanel extends React.Component {
             </div>
 
             <div className="form-group">
-                <label>calories/100g</label>
+                <label>calories/100g: </label>
                 <input
                     name="kcalPer100g"
                     value={this.state.kcalPer100g}
                     onChange={this.handleChange} />
             </div>
 
-            <button
-                className="add-button"
-                onClick={this.addObjectToArray}>
-                Add food
-            </button>
+            <div className="flex-01">
+                <button
+                    className="add-button"
+                    onClick={this.addObjectToArray}>
+                    Add food
+                </button>
 
-            <div>
-                <input type="checkbox" id="ifFavourite" name="ifFavourite" value="" onChange={this.handleCheckBoxChange}/>
-                <label htmlFor="ifFavourite">Add to favourites</label>
+                <div>
+                    <input type="checkbox" id="ifFavourite" name="ifFavourite" value="" onChange={this.handleCheckBoxChange}/>
+                    <label htmlFor="ifFavourite">Add to favourites</label>
+                </div>
             </div>
 
             <h3>Today:</h3>
+            <h3>Total calories {Math.round(this.state.totalDayKcal * 100) / 100}kcal</h3>
+            <h3>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h3>
+
             {this.state.foods.map(food => {
                 return (
                     <div key={food.id} className="grid-1-1">
