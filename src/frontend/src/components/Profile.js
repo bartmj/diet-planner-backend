@@ -10,14 +10,15 @@ const Profile = () => {
     }
 
     return (
-        <div>
+        <div className="container">
+            <h1>Profile</h1>
             <header>
                 <h3>
                     <strong>User: </strong> {currentUser.username}
                 </h3>
             </header>
             <p>
-                <strong>Token: </strong> {currentUser.token}
+                <strong>Token: </strong> {currentUser.token.substring(0, 20)}
             </p>
             <p>
                 <strong>Id: </strong> {currentUser.id}
@@ -26,7 +27,7 @@ const Profile = () => {
                 <strong>Email: </strong> {currentUser.email}
             </p>
             <div>
-                <strong>Authorities: </strong> {currentUser.id}
+                <strong>Authorities: </strong>
                 <ul>
                     {currentUser.roles &&
                     currentUser.roles.map((role, index) => <li key={index}>{role}</li> )}

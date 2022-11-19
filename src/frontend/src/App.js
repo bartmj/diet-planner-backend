@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import React, { useState, useEffect, useCallback } from 'react';
 import {useDispatch, useSelector} from "react-redux";
@@ -45,12 +45,11 @@ const App = () => {
 
   return (
           <BrowserRouter>
-              <div>
                   <nav>
                       <Link to={"/"}>
                           Logo
                       </Link>
-                      <div>
+                      <ul>
                           <li>
                               <Link to={"/home"}>
                                   Home
@@ -116,9 +115,9 @@ const App = () => {
                                   </li>
                               </div>
                           )}
-                      </div>
+                      </ul>
                   </nav>
-                  <div>
+
                       <Routes>
                           <Route path="/" element={<Home/>} />
                           <Route path="/home" element={<Home/>} />
@@ -130,8 +129,7 @@ const App = () => {
                           <Route path="/mod" element={<BoardModerator/>} />
                           <Route path="/admin" element={<BoardAdmin/>} />
                       </Routes>
-                  </div>
-              </div>
+
           </BrowserRouter>
   );
 }

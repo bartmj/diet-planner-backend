@@ -65,8 +65,9 @@ const Register = () => {
     };
 
     return (
-        <div>
+        <div className="container">
             <div>
+                <h1>Sign p</h1>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
@@ -75,18 +76,18 @@ const Register = () => {
                     <Form>
                         {!successful && (
                             <div>
-                                <div>
-                                    <label>Username</label>
+                                <div className="form-group">
+                                    <label>Username </label>
                                     <Field name="username" type="text" ></Field>
                                     <ErrorMessage name="username" component="div" />
                                 </div>
-                                <div>
-                                    <label>Email</label>
+                                <div className="form-group">
+                                    <label>Email </label>
                                     <Field name="email" type="text" ></Field>
                                     <ErrorMessage name="email" component="div" />
                                 </div>
-                                <div>
-                                    <label>Password</label>
+                                <div className="form-group">
+                                    <label>Password </label>
                                     <Field name="password" type="password" ></Field>
                                     <ErrorMessage name="password" component="div" />
                                 </div>

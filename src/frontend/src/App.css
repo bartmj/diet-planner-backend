@@ -1,54 +1,81 @@
+
+
+
+
+/*input {*/
+/*  margin: 12px;*/
+/*}*/
+
+/*.bg-blue {*/
+/*  background-color:cornflowerblue;*/
+/*  padding: 6px 0 6px 0;*/
+/*}*/
+
+/*.input {*/
+/*  width: 420px;*/
+/*}*/
+
+
+/*label {*/
+/*  display: block;*/
+/*}*/
+
+
+
+/*.link {*/
+/*  color: black;*/
+/*  text-decoration: none;*/
+/*  font-weight: bold;*/
+/*}*/
+
+/*.grid-1-1 {*/
+/*  display: grid;*/
+/*  grid-template-columns: 1fr 1fr;*/
+/*}*/
+
+/*.success {*/
+/*  color: forestgreen;*/
+/*}*/
+
+/*!*@media only screen and (max-width: 992px) {*!*/
+
+/*!*}*!*/
+
+#multiselect::-webkit-calendar-picker-indicator { display: none !important; }
+
 .container {
   width: 60%;
   margin: 0 auto;
 }
 
-.add-button {
-  display: block;
-  margin-top: 12px;
-  margin-bottom: 48px;
-}
-
-input {
-  margin: 12px;
-}
-
-.bg-blue {
-  background-color:cornflowerblue;
-  padding: 6px 0 6px 0;
-}
-
-.input {
-  width: 420px;
-}
-
-#multiselect::-webkit-calendar-picker-indicator { display: none !important; }
-
-label {
-  display: block;
-}
-
-nav li {
+nav ul li {
   display: inline-block;
-  width: 75px;
+  width: 120px;
   float: right;
 }
 
-.link {
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
+.form-group {
+  display: block;
+  margin: 12px 0;
+}
+
+.add-button {
+  display: inline-block;
+}
+
+.x-btn {
+  display: grid;
+  align-items: center;
+  width: 22px;
+}
+
+nav {
+  height: 84px;
+  background-color: rgb(229, 200, 153);
+  margin-bottom: 42px;
 }
 
 .grid-1-1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-
-.success {
-  color: forestgreen;
-}
-
-/*@media only screen and (max-width: 992px) {*/
-
-/*}*/

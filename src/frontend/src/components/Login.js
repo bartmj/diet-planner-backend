@@ -48,20 +48,21 @@ const Login = () => {
     }
 
     return (
-        <>
+        <div className="container">
+            <h1>Login</h1>
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={handleLogin}
             >
             <Form>
-                <div>
-                    <label htmlFor="username">Username</label>
+                <div className="form-group">
+                    <label htmlFor="username">Username </label>
                     <Field name="username" type="text" />
                     <ErrorMessage name="username" component="div" />
                 </div>
-                <div>
-                    <label htmlFor="password">Password</label>
+                <div className="form-group">
+                    <label htmlFor="password">Password </label>
                     <Field name="password" type="password" />
                     <ErrorMessage name="password" component="div" />
                 </div>
@@ -82,7 +83,7 @@ const Login = () => {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     )
 }
 

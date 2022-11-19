@@ -28,10 +28,13 @@ class UserPanel extends React.Component {
             totalDayProtein: 0,
             totalDayFats: 0,
             totalDayKcal: 0,
-            foods: []
+            foods: [],
+            ifFavourite: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
+
     }
 
     state = store.getState();
@@ -58,7 +61,8 @@ class UserPanel extends React.Component {
             proteinTotal: proteinPerFood,
             fatsTotal: fatsPerFood,
             kcalTotal: kcalPerFood,
-            userId: store.getState().auth.user.id
+            userId: store.getState().auth.user.id,
+            ifFavourite: this.state.ifFavourite
         }
 
         apiCalls.saveFood(dtoObj).then(response => {
@@ -104,8 +108,8 @@ class UserPanel extends React.Component {
     loadFoods = () => {
         apiCalls.getAll().then(response => {
             this.setState({
-                    foods: response.data
-                })
+                foods: response.data
+            })
             let totalDayProtein = 0, totalDayFats = 0, totalDayKcal = 0
             for (const element of response.data) {
                 totalDayProtein = totalDayProtein + element.proteinTotal
@@ -135,47 +139,70 @@ class UserPanel extends React.Component {
         }
     }
 
+    handleCheckBoxChange() {
+        let bool = this.state.ifFavourite === false
+        this.setState({
+            ifFavourite: bool
+        })
+    }
+
     render() {
         return <div className="container">
+            <h1>Macro calculator</h1>
             <h3>Total calories {Math.round(this.state.totalDayKcal * 100) / 100}kcal</h3>
             <h3>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h3>
 
-            <label>food:</label>
-            <input
-                id="multiselect"
-                type="text"
-                name=""
-                list="productName"
-                onChange={this.handleNameChange}
-                value={this.state.name}
-            />
-            <datalist id="productName">
-                {options.map(option => {
-                    return (
-                        <option key={option.id} value={option.value}>{option.value}</option>
-                    );
-                })}
-            </datalist>
-            <label>weight (grams):</label>
-            <input
-                name="weight"
-                value={this.state.weight}
-                onChange={this.handleChange} />
-            <label>protein/100g:</label>
-            <input
-                name="proteinPer100g"
-                value={this.state.proteinPer100g}
-                onChange={this.handleChange} />
-            <label>fats/100g</label>
-            <input
-                name="fatsPer100g"
-                value={this.state.fatsPer100g}
-                onChange={this.handleChange} />
-            <label>calories/100g</label>
-            <input
-                name="kcalPer100g"
-                value={this.state.kcalPer100g}
-                onChange={this.handleChange} />
+            <div className="form-group">
+                <label>food:</label>
+                <input
+                    id="multiselect"
+                    type="text"
+                    name=""
+                    list="productName"
+                    onChange={this.handleNameChange}
+                    value={this.state.name}
+                />
+
+                <datalist id="productName">
+                    {options.map(option => {
+                        return (
+                            <option key={option.id} value={option.value}>{option.value}</option>
+                        );
+                    })}
+                </datalist>
+            </div>
+
+            <div className="form-group">
+                <label>weight (grams):</label>
+                <input
+                    name="weight"
+                    value={this.state.weight}
+                    onChange={this.handleChange} />
+            </div>
+
+            <div className="form-group">
+                <label>protein/100g:</label>
+                <input
+                    name="proteinPer100g"
+                    value={this.state.proteinPer100g}
+                    onChange={this.handleChange} />
+            </div>
+
+            <div className="form-group">
+                <label>fats/100g</label>
+                <input
+                    name="fatsPer100g"
+                    value={this.state.fatsPer100g}
+                    onChange={this.handleChange} />
+            </div>
+
+            <div className="form-group">
+                <label>calories/100g</label>
+                <input
+                    name="kcalPer100g"
+                    value={this.state.kcalPer100g}
+                    onChange={this.handleChange} />
+            </div>
 
             <button
                 className="add-button"
@@ -183,18 +210,30 @@ class UserPanel extends React.Component {
                 Add food
             </button>
 
+            <div>
+                <input type="checkbox" id="ifFavourite" name="ifFavourite" value="" onChange={this.handleCheckBoxChange}/>
+                <label htmlFor="ifFavourite">Add to favourites</label>
+            </div>
+
+            <h3>Today:</h3>
             {this.state.foods.map(food => {
                 return (
-                    <div key={food.id}>
-                        <p>food: {food.name},
-                            protein: {Math.round(food.proteinTotal * 100) / 100}g, calories: {Math.round(food.kcalTotal * 100) / 100}kcal</p>
-                        <button
-                            onClick={() => this.removeObject(food.id)}
-                            type="button">x</button>
+                    <div key={food.id} className="grid-1-1">
+                        <div>
+                            <p>food: {food.name},
+                                protein: {Math.round(food.proteinTotal * 100) / 100}g, calories: {Math.round(food.kcalTotal * 100) / 100}kcal</p>
+                        </div>
+                        <div className="x-btn">
+                            <button
+                                onClick={() => this.removeObject(food.id)}
+                                type="button">
+                                x
+                            </button>
+                        </div>
                         <hr />
                     </div>
                 );
-            })}
+            })};
         </div>
     }
 }

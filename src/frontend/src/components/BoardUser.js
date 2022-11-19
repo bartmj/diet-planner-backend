@@ -26,9 +26,10 @@ const BoardUser = () => {
     }, []);
 
     return (
-        <div>
+        <div className="container">
             <header>
                 <h3>{content}</h3>
+                <p>Some user content</p>
             </header>
         </div>
     );
