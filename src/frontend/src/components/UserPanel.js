@@ -221,17 +221,19 @@ class UserPanel extends React.Component {
 
             {this.state.foods.map(food => {
                 return (
-                    <div key={food.id} className="grid-1-1">
-                        <div>
-                            <p>food: {food.name},
-                                protein: {Math.round(food.proteinTotal * 100) / 100}g, calories: {Math.round(food.kcalTotal * 100) / 100}kcal</p>
-                        </div>
-                        <div className="x-btn">
-                            <button
-                                onClick={() => this.removeObject(food.id)}
-                                type="button">
-                                x
-                            </button>
+                    <div key={food.id}>
+                        <div className="flex">
+                            <div>
+                                <p>food: {food.name},
+                                    protein: {Math.round(food.proteinTotal * 100) / 100}g, calories: {Math.round(food.kcalTotal * 100) / 100}kcal</p>
+                            </div>
+                            <div className="x-btn">
+                                <button
+                                    onClick={() => this.removeObject(food.id)}
+                                    type="button">
+                                    x
+                                </button>
+                            </div>
                         </div>
                         <hr />
                     </div>

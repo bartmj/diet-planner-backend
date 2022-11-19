@@ -64,6 +64,7 @@ nav ul li {
   display: grid;
   align-items: center;
   width: 22px;
+  margin-left: 24px;
 }
 
 nav {
@@ -80,4 +81,8 @@ nav {
 .flex-01 {
   display: flex;
   color: darkblue;
+}
+
+.flex {
+  display: flex;
 }
