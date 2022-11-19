@@ -47,8 +47,7 @@ public class User {
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-//    @JoinColumn(name = "user_id")
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<FoodEntity> foods;
 
     public User() {
@@ -68,11 +67,13 @@ public class User {
         return false;
     }
 
-    public void deleteFood(Long id) {
+    public boolean deleteFood(Long id) {
         for (FoodEntity food : foods) {
             if (food.getId() == id) {
                 foods.remove(food);
+                return true;
             }
         }
+        return false;
     }
 }

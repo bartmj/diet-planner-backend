@@ -31,11 +31,12 @@ public class FoodPersistenceAdapter implements FoodRepository {
 
     @Override
     public boolean deleteFood(Long id) {
+        boolean bool = false;
         var byId = jpaFoodRepository.findById(id);
         if (byId.isPresent()) {
             jpaFoodRepository.delete(byId.get());
-            return true;
+            bool = true;
         }
-        return false;
+        return bool;
     }
 }

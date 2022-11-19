@@ -45,7 +45,7 @@ public class FoodController {
     }
 
     @CrossOrigin
-    @DeleteMapping(value = "/all/{id}")
+    @DeleteMapping(value = "/all/{foodId}")
     public ResponseEntity<Long> deleteFood(@PathVariable Long foodId) {
         Long userId = authFacade.getUserId();
         var isRemoved = service.delete(foodId, userId);

@@ -7,7 +7,7 @@ const port = 5000
 const basePath = `http://localhost:5000/calc`;
 
 export const remove = (val) => {
-    axios.delete(basePath + '/all/' + val).then(r => {});
+    axios.delete(basePath + '/all/' + val, { headers: authHeader()}).then(r => {});
 }
 
 export const saveFood = (stoObj) => {
