@@ -236,7 +236,7 @@ class UserPanel extends React.Component {
                         <hr />
                     </div>
                 );
-            })};
+            })}
         </div>
     }
 }
