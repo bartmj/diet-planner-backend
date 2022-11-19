@@ -67,4 +67,12 @@ public class User {
         }
         return false;
     }
+
+    public void deleteFood(Long id) {
+        for (FoodEntity food : foods) {
+            if (food.getId() == id) {
+                foods.remove(food);
+            }
+        }
+    }
 }

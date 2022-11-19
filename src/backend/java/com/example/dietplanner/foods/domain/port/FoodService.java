@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface FoodService {
 
-    Long saveFood(Food food);
+    Long saveFood(Food food, Long id);
 
-    List<Food> getAll();
+    List<Food> getAll(Long id);
 
-    boolean delete(Long id);
+    boolean delete(Long foodId, Long userId);
 }

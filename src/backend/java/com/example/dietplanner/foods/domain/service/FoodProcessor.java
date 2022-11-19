@@ -7,9 +7,6 @@ import com.example.dietplanner.foods.domain.port.FoodRepository;
 import com.example.dietplanner.foods.domain.port.FoodService;
 import com.example.dietplanner.user.model.User;
 import com.example.dietplanner.user.repository.UserRepository;
-import com.example.dietplanner.user.security.services.UserDetailsImpl;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -26,15 +23,12 @@ public class FoodProcessor implements FoodService {
     }
 
     @Override
-    public Long saveFood(Food food) {
+    public Long saveFood(Food food, Long userId) {
 
-        UserDetailsImpl principal = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Long principalId = principal.getId();
-
-        var userOptional = userRepository.findById(principalId);
+        var userOptional = userRepository.findById(userId);
 
         if (userOptional.isPresent()) {
-            food.setUserId(principalId);
+            food.setUserId(userId);
             FoodEntity foodEntity = foodRepository.saveFood(food);
             User user = userOptional.get();
             user.addFood(foodEntity);
@@ -46,13 +40,14 @@ public class FoodProcessor implements FoodService {
     }
 
     @Override
-    public List<Food> getAll() {
-        UserDetailsImpl principal = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return foodRepository.getAll(principal.getId());
+    public List<Food> getAll(Long userId) {
+        return foodRepository.getAll(userId);
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id, Long userId) {
+        var userOptional = userRepository.findById(userId);
+        userOptional.get().deleteFood(id);
         return foodRepository.deleteFood(id);
     }
 }
