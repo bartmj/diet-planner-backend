@@ -12,6 +12,7 @@ import BoardModerator from "./components/BoardModerator";
 import BoardUser from "./components/BoardUser";
 import Profile from "./components/Profile";
 import UserPanel from "./components/UserPanel";
+import logo from './img/4306a6b70354473aaaeb549b78efa6b1.png';
 
 const App = () => {
     const [showModeratorBoard, setModeratorBoard] = useState(false);
@@ -47,7 +48,7 @@ const App = () => {
           <BrowserRouter>
                   <nav>
                       <Link to={"/"}>
-                          Logo
+                          <img height="84px" src={logo} alt="Logo" />
                       </Link>
                       <ul>
                           <li>
