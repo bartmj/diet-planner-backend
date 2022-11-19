@@ -19,5 +19,4 @@ public class Food {
     Float fatsTotal;
     Float kcalTotal;
     Long userId;
-
 }

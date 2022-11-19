@@ -9,7 +9,7 @@ public interface FoodRepository {
 
     FoodEntity saveFood(Food food);
 
-    List<Food> getAll();
+    List<Food> getAll(Long id);
 
     boolean deleteFood(Long id);
 }

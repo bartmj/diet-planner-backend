@@ -24,8 +24,8 @@ public class FoodPersistenceAdapter implements FoodRepository {
     }
 
     @Override
-    public List<Food> getAll() {
-        var foodEntities = jpaFoodRepository.findAll();
+    public List<Food> getAll(Long id) {
+        var foodEntities = jpaFoodRepository.getAllByUserId(id);
         return mapper.toDomain(foodEntities);
     }
 

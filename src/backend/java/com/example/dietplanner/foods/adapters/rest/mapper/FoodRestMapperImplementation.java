@@ -24,7 +24,6 @@ public class FoodRestMapperImplementation implements FoodRestMapper {
                 .proteinTotal(foodDto.getProteinTotal())
                 .fatsTotal(foodDto.getFatsTotal())
                 .kcalTotal(foodDto.getKcalTotal())
-                .userId(foodDto.getUserId())
                 .build();
     }
 

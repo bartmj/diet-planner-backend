@@ -24,7 +24,5 @@ public class FoodEntity {
     private Float proteinTotal;
     private Float fatsTotal;
     private Float kcalTotal;
-    @Column(name = "user_id")
     private Long userId;
-
 }

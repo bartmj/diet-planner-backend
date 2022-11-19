@@ -7,11 +7,11 @@ import com.example.dietplanner.foods.domain.port.FoodRepository;
 import com.example.dietplanner.foods.domain.port.FoodService;
 import com.example.dietplanner.user.model.User;
 import com.example.dietplanner.user.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.dietplanner.user.security.services.UserDetailsImpl;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
-import java.util.Optional;
 
 public class FoodProcessor implements FoodService {
 
@@ -27,9 +27,14 @@ public class FoodProcessor implements FoodService {
 
     @Override
     public Long saveFood(Food food) {
-        var userOptional = userRepository.findById(food.getUserId());
+
+        UserDetailsImpl principal = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long principalId = principal.getId();
+
+        var userOptional = userRepository.findById(principalId);
 
         if (userOptional.isPresent()) {
+            food.setUserId(principalId);
             FoodEntity foodEntity = foodRepository.saveFood(food);
             User user = userOptional.get();
             user.addFood(foodEntity);
@@ -37,12 +42,13 @@ public class FoodProcessor implements FoodService {
             return foodEntity.getId();
         }
 
-        throw new RuntimeException("Kuka la baka lala");
+        throw new RuntimeException("Ups no username!");
     }
 
     @Override
     public List<Food> getAll() {
-        return foodRepository.getAll();
+        UserDetailsImpl principal = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return foodRepository.getAll(principal.getId());
     }
 
     @Override
