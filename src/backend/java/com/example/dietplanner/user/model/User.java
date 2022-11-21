@@ -1,6 +1,8 @@
 package com.example.dietplanner.user.model;
 
-import com.example.dietplanner.foods.adapters.entity.FoodEntity;
+import com.example.dietplanner.favourites.adapters.persistence.entity.FavouriteEntity;
+import com.example.dietplanner.foods.adapters.persistence.entity.FoodEntity;
+import com.example.dietplanner.foods.domain.Food;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,6 +52,9 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL)
     private List<FoodEntity> foods;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<FavouriteEntity> favouriteFoods;
+
     public User() {
 
     }
@@ -60,8 +65,13 @@ public class User {
         this.password = password;
     }
 
-    public boolean addFood(FoodEntity food) {
-        if(foods.add(food)) {
+    public boolean addFood(Object object) {
+        if (object.getClass() == FoodEntity.class) {
+            foods.add((FoodEntity) object);
+            return true;
+        }
+        if (object.getClass() == FavouriteEntity.class) {
+            favouriteFoods.add((FavouriteEntity) object);
             return true;
         }
         return false;

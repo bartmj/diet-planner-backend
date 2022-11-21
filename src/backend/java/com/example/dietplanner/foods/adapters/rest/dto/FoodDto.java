@@ -29,4 +29,5 @@ public class FoodDto {
     Float fatsTotal;
     @NotNull
     Float kcalTotal;
+    Boolean ifFavourite;
 }

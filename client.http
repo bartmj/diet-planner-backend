@@ -65,7 +65,7 @@ Content-Type: application/json
 {
   "username": "user023432733",
   "email": "user034332733@wp.pl",
-  "password": "1234567",
+  "password": "1234567890",
   "role": ["user"]
 }
 
@@ -93,8 +93,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "a",
-  "password": "a"
+  "username": "user023432733",
+  "password": "1234567890"
 }
 
 ### SIGN IN AS MODERATOR

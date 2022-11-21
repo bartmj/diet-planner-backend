@@ -1,12 +1,15 @@
 package com.example.dietplanner.foods.domain.service;
 
-import com.example.dietplanner.foods.adapters.entity.FoodEntity;
+import com.example.dietplanner.favourites.adapters.persistence.entity.FavouriteEntity;
+import com.example.dietplanner.favourites.domain.Favourite;
+import com.example.dietplanner.favourites.domain.port.FavouriteRepository;
+import com.example.dietplanner.foods.adapters.persistence.entity.FoodEntity;
 import com.example.dietplanner.foods.domain.Food;
-import com.example.dietplanner.foods.domain.port.FoodPersistenceMapper;
 import com.example.dietplanner.foods.domain.port.FoodRepository;
 import com.example.dietplanner.foods.domain.port.FoodService;
 import com.example.dietplanner.user.model.User;
 import com.example.dietplanner.user.repository.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,14 +17,13 @@ public class FoodProcessor implements FoodService {
 
     private final FoodRepository foodRepository;
     private final UserRepository userRepository;
-    private final FoodPersistenceMapper mapper;
 
-    public FoodProcessor(FoodRepository foodRepository, UserRepository userRepository, FoodPersistenceMapper mapper) {
+    public FoodProcessor(FoodRepository foodRepository, UserRepository userRepository) {
         this.foodRepository = foodRepository;
         this.userRepository = userRepository;
-        this.mapper = mapper;
     }
 
+    @Transactional
     @Override
     public Long saveFood(Food food, Long userId) {
 
@@ -32,11 +34,9 @@ public class FoodProcessor implements FoodService {
             FoodEntity foodEntity = foodRepository.saveFood(food);
             User user = userOptional.get();
             user.addFood(foodEntity);
-            userRepository.save(user);
-            return foodEntity.getId();
+            return userRepository.save(user).getId();
         }
-
-        throw new RuntimeException("Ups no username!");
+        return null;
     }
 
     @Override
