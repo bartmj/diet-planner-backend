@@ -2,18 +2,6 @@ import React from 'react';
 import * as apiCalls from '../api/apiCalls';
 import store from '../store';
 
-const options = [
-    { id: 1, value: 'chicken', proteinPer100g: 27, kcalPer100g: 239, fatsPer100g: 1 },
-    { id: 2, value: 'eggs', proteinPer100g: 13, kcalPer100g: 155.1, fatsPer100g: 1 },
-    { id: 3, value: 'cheese piątnica semi-fat', proteinPer100g: 16, kcalPer100g: 485, fatsPer100g: 1 },
-    { id: 4, value: 'peanut butter', proteinPer100g: 23.78, kcalPer100g: 642, fatsPer100g: 1 },
-    { id: 5, value: 'oats', proteinPer100g: 14, kcalPer100g: 418, fatsPer100g: 1 },
-    { id: 6, value: 'walnut', proteinPer100g: 15, kcalPer100g: 654.4, fatsPer100g: 1 },
-    { id: 7, value: 'dark bread', proteinPer100g: 8.5, kcalPer100g: 218, fatsPer100g: 1 },
-    { id: 8, value: 'protein bar Olymp 64 g', proteinPer100g: 31, kcalPer100g: 369, fatsPer100g: 1 },
-    { id: 9, value: 'WPI 90 Olymp', proteinPer100g: 90, kcalPer100g: 373, fatsPer100g: 1 },
-    { id: 10, value: 'wheat noodles, cooked', proteinPer100g: 5.15, kcalPer100g: 131, fatsPer100g: 1 }
-]
 
 class UserPanel extends React.Component {
     constructor(props) {
@@ -29,7 +17,8 @@ class UserPanel extends React.Component {
             totalDayFats: 0,
             totalDayKcal: 0,
             foods: [],
-            ifFavourite: false
+            ifFavourite: false,
+            options: []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -41,7 +30,12 @@ class UserPanel extends React.Component {
 
     componentDidMount() {
         this.loadFoods();
-        console.log()
+        apiCalls.getFavourites().then((res) => {
+            // console.log(res.data)
+            this.setState({
+                options: res.data
+            })
+        })
     }
 
     addObjectToArray = e => {
@@ -131,7 +125,7 @@ class UserPanel extends React.Component {
         this.setState({
             name: n
         })
-        let obj = options.find(o => o.value.toLowerCase() === n.toLowerCase());
+        let obj = this.state.options.find(o => o.name.toLowerCase() === n.toLowerCase());
         if (obj) {
             this.setState({
                 proteinPer100g: obj.proteinPer100g,
@@ -164,9 +158,9 @@ class UserPanel extends React.Component {
                 />
 
                 <datalist id="productName">
-                    {options.map(option => {
+                    {this.state.options.map(option => {
                         return (
-                            <option key={option.id} value={option.value}>{option.value}</option>
+                            <option key={option.id} value={option.name}>{option.name}</option>
                         );
                     })}
                 </datalist>
