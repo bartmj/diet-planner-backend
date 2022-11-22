@@ -30,31 +30,26 @@ public class FoodController {
     public ResponseEntity<?> sendFood(@Valid @RequestBody FoodDto foodDto) {
         Long userId = authFacade.getUserId();
         var food = foodRestMapper.toDomain(foodDto);
-        Long savedToFoods = service.saveFood(food, userId);
+        Long savedToFoodsId = service.saveFood(food, userId);
 
         Long savedToFavourites = null;
         if (foodDto.getIfFavourite()) {
             savedToFavourites = favouriteService.saveFavourite(food, userId);
         }
 
-        if (savedToFoods != null && savedToFavourites != null) {
+        if (savedToFoodsId != null && savedToFavourites != null) {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(new MessageResponse("Food has been added, favourite food has been added."));
+                    .body(new MessageResponse(String.format("Food with  id %s been added to favourites.", savedToFoodsId), savedToFoodsId));
         }
-        if (savedToFoods != null) {
+        if (savedToFoodsId != null) {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(new MessageResponse("Food has been added."));
-        }
-        if (savedToFavourites != null) {
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(new MessageResponse("Food has been added to favourites."));
+                    .body(new MessageResponse(String.format("Food with  id %s been added to favourites.", savedToFoodsId), savedToFoodsId));
         }
         return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(new MessageResponse("Error 404."));
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new MessageResponse("Internal server error."));
     }
 
     @CrossOrigin

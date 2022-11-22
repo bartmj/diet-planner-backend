@@ -66,12 +66,13 @@ class UserPanel extends React.Component {
         }
 
         apiCalls.saveFood(dtoObj).then(response => {
-            let idFromDb = response.data
+
+            const { id } = response.data;
 
             this.setState({
                 foods: [
                     ...this.state.foods,
-                    { id: idFromDb, name: this.state.name, proteinTotal: proteinPerFood, kcalTotal: kcalPerFood, totalFats: fatsPerFood }
+                    { id: id, name: this.state.name, proteinTotal: proteinPerFood, kcalTotal: kcalPerFood, totalFats: fatsPerFood }
                 ],
                 name: '',
                 weight: 0,
@@ -80,7 +81,8 @@ class UserPanel extends React.Component {
                 kcalPer100g: 0,
                 totalDayProtein: this.state.totalDayProtein + proteinPerFood,
                 totalDayFats: this.state.totalDayFats + fatsPerFood,
-                totalDayKcal: this.state.totalDayKcal + kcalPerFood
+                totalDayKcal: this.state.totalDayKcal + kcalPerFood,
+                ifFavourite: false
             })
         })
     };
@@ -210,7 +212,12 @@ class UserPanel extends React.Component {
                 </button>
 
                 <div>
-                    <input type="checkbox" id="ifFavourite" name="ifFavourite" value="" onChange={this.handleCheckBoxChange}/>
+                    <input
+                        type="checkbox"
+                        id="ifFavourite"
+                        name="ifFavourite"
+                        checked={this.state.ifFavourite ? 'checked' : ''}
+                        onChange={this.handleCheckBoxChange}/>
                     <label htmlFor="ifFavourite">Add to favourites</label>
                 </div>
             </div>
