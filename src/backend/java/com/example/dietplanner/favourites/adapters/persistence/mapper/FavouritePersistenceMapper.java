@@ -15,6 +15,7 @@ public class FavouritePersistenceMapper {
 
     public Favourite toDomain(FavouriteEntity favourite) {
         return Favourite.builder()
+                .id(favourite.getId())
                 .name(favourite.getName())
                 .proteinPer100g(favourite.getProteinPer100g())
                 .fatsPer100g(favourite.getFatsPer100g())

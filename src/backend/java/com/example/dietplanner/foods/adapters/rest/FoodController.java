@@ -29,6 +29,7 @@ public class FoodController {
     @PostMapping(value = "/add", consumes = "application/json")
     public ResponseEntity<?> sendFood(@Valid @RequestBody FoodDto foodDto) {
         Long userId = authFacade.getUserId();
+
         var food = foodRestMapper.toDomain(foodDto);
         Long savedToFoodsId = service.saveFood(food, userId);
 

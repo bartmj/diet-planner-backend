@@ -11,11 +11,11 @@ export const remove = (val) => {
 }
 
 export const saveFood = (stoObj) => {
-    return axios.post(basePath + `calc/add`, stoObj, { headers: authHeader()});
+    return axios.post(basePath + `calc/add`, stoObj, { headers: authHeader() });
 }
 
 export const getAll = () => {
-    return axios.get(basePath + 'calc/all', { headers: authHeader()});
+    return axios.get(basePath + 'calc/all', { headers: authHeader() });
 }
 
 export const getFavourites = () => {

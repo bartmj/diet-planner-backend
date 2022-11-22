@@ -20,6 +20,7 @@ public class FavouritesProcessor implements FavouriteService {
     public Long saveFavourite(Food food, Long userId) {
         FavouriteEntity favouriteEntity = favouriteRepository.saveFavourite(
                 Favourite.builder()
+                        .id(food.getId())
                         .name(food.getName())
                         .proteinPer100g(food.getProteinPer100g())
                         .fatsPer100g(food.getFatsPer100g())

@@ -27,9 +27,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "root5435",
-  "email": "root5543@gmail.com",
-  "password": "admin123123",
+  "username": "bartmj",
+  "email": "root55343@gmail.com",
+  "password": "adminadmin",
   "role": ["user", "mod", "admin"]
 }
 
@@ -114,7 +114,7 @@ Content-Type: application/json
 
 {
   "username": "bartmj",
-  "password": "admin"
+  "password": "adminadmin"
 }
 
 ### See user content
@@ -135,4 +135,4 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYXJ0bWoiLCJpYXQiOjE2NjgzN
 ###
 GET http://localhost:5000/favourites/user
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb290IiwiaWF0IjoxNjY5MTEwMjUwLCJleHAiOjE2NjkxOTY2NTB9.4sxlxp4Io4SCGEqPtqT5K54tn2yvvvtt52d59z3GNQHqMt9F9SX6N2WX_F3Wp4oUkHxUNp0EHT96OsNFBsovbw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiajkwIiwiaWF0IjoxNjY5MTI4NjgyLCJleHAiOjE2NjkyMTUwODJ9.Z1GLgsy5hKOws5k_LOvjcYVIVUj-c-Gj-KywI_CyqtFGlsZ8yjqtyr3tPYAfOsF4SPi3cnGSUXBmOa3pBz-CIQ

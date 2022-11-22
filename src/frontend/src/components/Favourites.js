@@ -9,16 +9,23 @@ const Favourites = () => {
         apiCalls.getFavourites().then((res) => {
             setData(res.data)
         });
-    }, data);
+    }, []);
 
     return (
-        <ul>
+
+        <div className="container">
+            <h1>Favourites</h1>
+            <p>A list of your favourite foods.</p>
             {data.map(favourite => {
                 return (
-                    <li>{favourite.name} {favourite.proteinPer100g} {favourite.fatsPer100g} {favourite.kcalPer100g}</li>
+                    <div key={favourite.id}>
+                        <div>{favourite.name} {favourite.proteinPer100g} {favourite.fatsPer100g} {favourite.kcalPer100g}</div>
+                        <hr />
+                    </div>
                 )
             })}
-        </ul>
+        </div>
+
     )
 }
 
