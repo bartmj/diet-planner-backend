@@ -19,8 +19,10 @@ class FoodPersistenceMapperImplementation implements FoodPersistenceMapper {
                 food.getProteinPer100g(),
                 food.getFatsPer100g(),
                 food.getKcalPer100g(),
+                food.getCarbsPer100g(),
                 food.getProteinTotal(),
                 food.getFatsTotal(),
+                food.getCarbsTotal(),
                 food.getKcalTotal(),
                 food.getUserId());
     }
@@ -34,7 +36,9 @@ class FoodPersistenceMapperImplementation implements FoodPersistenceMapper {
                 .proteinPer100g(foodEntity.getProteinPer100g())
                 .fatsPer100g(foodEntity.getFatsPer100g())
                 .kcalPer100g(foodEntity.getKcalPer100g())
+                .carbsPer100g(foodEntity.getCarbohydratesPer100g())
                 .proteinTotal(foodEntity.getProteinTotal())
+                .carbsTotal(foodEntity.getCarbohydratesTotal())
                 .fatsTotal(foodEntity.getFatsTotal())
                 .kcalTotal(foodEntity.getKcalTotal())
                 .userId(foodEntity.getUserId())

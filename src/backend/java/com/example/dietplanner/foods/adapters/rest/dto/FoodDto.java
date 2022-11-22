@@ -24,10 +24,14 @@ public class FoodDto {
     @NotNull
     Float kcalPer100g;
     @NotNull
+    Float carbsPer100g;
+    @NotNull
     Float proteinTotal;
     @NotNull
     Float fatsTotal;
     @NotNull
     Float kcalTotal;
+    @NotNull
+    Float carbsTotal;
     Boolean ifFavourite;
 }

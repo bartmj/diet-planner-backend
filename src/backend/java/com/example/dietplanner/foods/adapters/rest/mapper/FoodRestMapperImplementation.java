@@ -35,6 +35,7 @@ public class FoodRestMapperImplementation implements FoodRestMapper {
                 .weight(food.getWeight())
                 .proteinPer100g(food.getProteinPer100g())
                 .fatsPer100g(food.getFatsPer100g())
+                .carbsPer100g(food.getCarbsPer100g())
                 .kcalPer100g(food.getKcalPer100g())
                 .proteinTotal(food.getProteinTotal())
                 .fatsTotal(food.getFatsTotal())

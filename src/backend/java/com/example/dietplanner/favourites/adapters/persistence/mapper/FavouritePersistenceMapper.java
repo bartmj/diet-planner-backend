@@ -10,7 +10,13 @@ import java.util.List;
 @Component
 public class FavouritePersistenceMapper {
     public FavouriteEntity toEntity(Favourite favourite) {
-        return new FavouriteEntity(favourite.getId(), favourite.getName(), favourite.getProteinPer100g(), favourite.getFatsPer100g(), favourite.getKcalPer100g(), favourite.getUserId());
+        return new FavouriteEntity(favourite.getId(),
+                favourite.getName(),
+                favourite.getProteinPer100g(),
+                favourite.getFatsPer100g(),
+                favourite.getKcalPer100g(),
+                favourite.getCarbsPer100g(),
+                favourite.getUserId());
     }
 
     public Favourite toDomain(FavouriteEntity favourite) {
@@ -20,6 +26,7 @@ public class FavouritePersistenceMapper {
                 .proteinPer100g(favourite.getProteinPer100g())
                 .fatsPer100g(favourite.getFatsPer100g())
                 .kcalPer100g(favourite.getKcalPer100g())
+                .carbsPer100g(favourite.getCarbsPer100g())
                 .userId(favourite.getUserId())
                 .build();
     }

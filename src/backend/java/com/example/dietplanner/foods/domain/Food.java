@@ -15,8 +15,10 @@ public class Food {
     Float proteinPer100g;
     Float fatsPer100g;
     Float kcalPer100g;
+    Float carbsPer100g;
     Float proteinTotal;
     Float fatsTotal;
+    Float carbsTotal;
     Float kcalTotal;
     Long userId;
 }

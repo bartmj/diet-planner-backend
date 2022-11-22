@@ -22,5 +22,6 @@ public class FavouriteEntity {
     private Float proteinPer100g;
     private Float fatsPer100g;
     private Float kcalPer100g;
+    private Float carbsPer100g;
     private Long userId;
 }

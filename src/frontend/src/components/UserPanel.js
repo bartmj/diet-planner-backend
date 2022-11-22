@@ -2,7 +2,6 @@ import React from 'react';
 import * as apiCalls from '../api/apiCalls';
 import store from '../store';
 
-
 class UserPanel extends React.Component {
     constructor(props) {
         super(props);
@@ -12,18 +11,20 @@ class UserPanel extends React.Component {
             weight: 0,
             proteinPer100g: 0,
             fatsPer100g: 0,
+            carbsPer100g: 0,
             kcalPer100g: 0,
             totalDayProtein: 0,
             totalDayFats: 0,
+            totalDayCarbs: 0,
             totalDayKcal: 0,
             foods: [],
             ifFavourite: false,
             options: []
         };
+
         this.handleChange = this.handleChange.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleCheckBoxChange = this.handleCheckBoxChange.bind(this);
-
     }
 
     state = store.getState();
@@ -31,7 +32,6 @@ class UserPanel extends React.Component {
     componentDidMount() {
         this.loadFoods();
         apiCalls.getFavourites().then((res) => {
-            // console.log(res.data)
             this.setState({
                 options: res.data
             })
@@ -44,6 +44,7 @@ class UserPanel extends React.Component {
         let proteinPerFood = (this.state.weight * this.state.proteinPer100g) / 100
         let kcalPerFood = (this.state.weight * this.state.kcalPer100g) / 100
         let fatsPerFood = (this.state.weight * this.state.fatsPer100g) / 100
+        let carbsPerFood = (this.state.weight * this.state.carbsPer100g) / 100
 
         let dtoObj = {
             id: null,
@@ -52,10 +53,11 @@ class UserPanel extends React.Component {
             proteinPer100g: this.state.proteinPer100g,
             fatsPer100g: this.state.fatsPer100g,
             kcalPer100g: this.state.kcalPer100g,
+            carbsPer100g: this.state.carbsPer100g,
             proteinTotal: proteinPerFood,
             fatsTotal: fatsPerFood,
             kcalTotal: kcalPerFood,
-            userId: store.getState().auth.user.id,
+            carbsTotal: carbsPerFood,
             ifFavourite: this.state.ifFavourite
         }
 
@@ -66,7 +68,11 @@ class UserPanel extends React.Component {
             this.setState({
                 foods: [
                     ...this.state.foods,
-                    { id: id, name: this.state.name, proteinTotal: proteinPerFood, kcalTotal: kcalPerFood, totalFats: fatsPerFood }
+                    { id: id, name: this.state.name,
+                        proteinTotal: proteinPerFood,
+                        kcalTotal: kcalPerFood,
+                        totalFats: fatsPerFood,
+                        totalCarbs: carbsPerFood}
                 ],
                 name: '',
                 weight: 0,
@@ -76,6 +82,7 @@ class UserPanel extends React.Component {
                 totalDayProtein: this.state.totalDayProtein + proteinPerFood,
                 totalDayFats: this.state.totalDayFats + fatsPerFood,
                 totalDayKcal: this.state.totalDayKcal + kcalPerFood,
+                totalDayCarbs: this.state.totalDayCarbs + carbsPerFood,
                 ifFavourite: false
             })
         })
@@ -89,7 +96,10 @@ class UserPanel extends React.Component {
                 return obj.id !== val;
             }),
             totalDayProtein: this.state.totalDayProtein - obj.proteinTotal,
-            totalDayKcal: this.state.totalDayKcal - obj.kcalTotal
+            totalDayKcal: this.state.totalDayKcal - obj.kcalTotal,
+            totalDayFats: this.state.totalDayFats - obj.fatsTotal,
+            totalDayCarbs: this.state.totalDayCarbs - obj.carbsTotal
+
         })
         apiCalls.remove(val)
     }
@@ -106,16 +116,18 @@ class UserPanel extends React.Component {
             this.setState({
                 foods: response.data
             })
-            let totalDayProtein = 0, totalDayFats = 0, totalDayKcal = 0
+            let totalDayProtein = 0, totalDayFats = 0, totalDayKcal = 0, totalDayCarbs = 0
             for (const element of response.data) {
                 totalDayProtein = totalDayProtein + element.proteinTotal
                 totalDayFats = totalDayFats + element.fatsTotal
                 totalDayKcal = totalDayKcal + element.kcalTotal
+                totalDayCarbs = totalDayCarbs + element.carbsTotal
             }
             this.setState({
                 totalDayProtein: totalDayProtein,
                 totalDayFats: totalDayFats,
-                totalDayKcal: totalDayKcal
+                totalDayKcal: totalDayKcal,
+                totalDayCarbs: totalDayCarbs
             })
         })
     }
@@ -130,7 +142,8 @@ class UserPanel extends React.Component {
             this.setState({
                 proteinPer100g: obj.proteinPer100g,
                 kcalPer100g: obj.kcalPer100g,
-                fatsPer100g: obj.fatsPer100g
+                fatsPer100g: obj.fatsPer100g,
+                carbsPer100g: obj.carbsPer100g
             });
         }
     }
@@ -191,6 +204,14 @@ class UserPanel extends React.Component {
             </div>
 
             <div className="form-group">
+                <label>carbohydrates/100g: </label>
+                <input
+                    name="carbsPer100g"
+                    value={this.state.carbsPer100g}
+                    onChange={this.handleChange} />
+            </div>
+
+            <div className="form-group">
                 <label>calories/100g: </label>
                 <input
                     name="kcalPer100g"
@@ -216,17 +237,23 @@ class UserPanel extends React.Component {
                 </div>
             </div>
 
-            <h3>Today:</h3>
-            <h3>Total calories {Math.round(this.state.totalDayKcal * 100) / 100}kcal</h3>
-            <h3>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h3>
+            <h4>Today:</h4>
+            <h4>Total calories {Math.round(this.state.totalDayKcal * 100) / 100}kcal</h4>
+            <h4>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h4>
+            <h4>Total fats {Math.round(this.state.totalDayFats * 100) / 100}g</h4>
+            <h4>Total carbohydrates {Math.round(this.state.totalDayCarbs * 100) / 100}g</h4>
 
             {this.state.foods.map(food => {
                 return (
                     <div key={food.id}>
                         <div className="flex">
                             <div>
-                                <p>food: {food.name},
-                                    protein: {Math.round(food.proteinTotal * 100) / 100}g, calories: {Math.round(food.kcalTotal * 100) / 100}kcal</p>
+                                <p>{food.name},
+                                    protein: {Math.round(food.proteinTotal * 100) / 100}g,
+                                    calories: {Math.round(food.kcalTotal * 100) / 100}kcal,
+                                    fats: {Math.round(food.fatsTotal * 100) / 100}g,
+                                    carbohydrates: {Math.round(food.carbsTotal * 100) / 100}g
+                                </p>
                             </div>
                             <div className="x-btn">
                                 <button

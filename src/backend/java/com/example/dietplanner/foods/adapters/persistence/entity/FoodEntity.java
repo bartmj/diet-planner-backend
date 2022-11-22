@@ -20,9 +20,11 @@ public class FoodEntity {
     private Float weight;
     private Float proteinPer100g;
     private Float fatsPer100g;
+    private Float carbohydratesPer100g;
     private Float kcalPer100g;
     private Float proteinTotal;
     private Float fatsTotal;
+    private Float carbohydratesTotal;
     private Float kcalTotal;
     private Long userId;
 }

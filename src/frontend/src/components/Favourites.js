@@ -20,7 +20,7 @@ const Favourites = () => {
             {data.map(favourite => {
                 return (
                     <div key={favourite.id}>
-                        <div>{favourite.name} {favourite.proteinPer100g} {favourite.fatsPer100g} {favourite.kcalPer100g}</div>
+                        <div>{favourite.name} {favourite.proteinPer100g} {favourite.fatsPer100g} {favourite.kcalPer100g} {favourite.carbsPer100g}</div>
                         <hr />
                     </div>
                 )
