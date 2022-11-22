@@ -51,6 +51,7 @@ nav ul li {
   float: right;
 }
 
+
 .form-group {
   display: block;
   margin: 12px 0;
@@ -70,7 +71,7 @@ nav ul li {
 nav {
   height: 84px;
   background-color: #10654e;
-  margin-bottom: 42px;
+  margin-bottom: 76px;
 }
 
 .grid-1-1 {

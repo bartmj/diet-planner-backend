@@ -9,7 +9,6 @@ import Login from './components/Login';
 import Register from './components/Register';
 import BoardAdmin from "./components/BoardAdmin";
 import BoardModerator from "./components/BoardModerator";
-import BoardUser from "./components/BoardUser";
 import Profile from "./components/Profile";
 import UserPanel from "./components/UserPanel";
 import logo from './img/4306a6b70354473aaaeb549b78efa6b1.png';
@@ -52,51 +51,9 @@ const App = () => {
                           <img height="84px" src={logo} alt="Logo" />
                       </Link>
                       <ul>
-                          <li>
-                              <Link to={"/home"}>
-                                  Home
-                              </Link>
-                          </li>
 
-                          {showModeratorBoard && (
-                              <li>
-                                  <Link to={"/mod"}>
-                                      Moderator Board
-                                  </Link>
-                              </li>
-                          )}
 
-                          {showAdminBoard && (
-                              <li>
-                                  <Link to={"/admin"}>
-                                      Admin Board
-                                  </Link>
-                              </li>
-                          )}
 
-                          {currentUser && (
-                              <li>
-                                  <Link to={"/user"}>
-                                      User
-                                  </Link>
-                              </li>
-                          )}
-
-                          {currentUser && (
-                              <li>
-                                  <Link to={"/favourites"}>
-                                      Favourites
-                                  </Link>
-                              </li>
-                          )}
-
-                          {currentUser && (
-                              <li>
-                                  <Link to={"/calc"}>
-                                      Macro Calc
-                                  </Link>
-                              </li>
-                          )}
                           {currentUser ? (
                               <div>
                                   <li>
@@ -124,6 +81,45 @@ const App = () => {
                                   </li>
                               </div>
                           )}
+
+                          {currentUser && (
+                              <li>
+                                  <Link to={"/favourites"}>
+                                      Favourites
+                                  </Link>
+                              </li>
+                          )}
+
+                          {currentUser && (
+                              <li>
+                                  <Link to={"/calc"}>
+                                      Macro Calc
+                                  </Link>
+                              </li>
+                          )}
+
+                          <li>
+                              <Link to={"/home"}>
+                                  Home
+                              </Link>
+                          </li>
+
+                          {showModeratorBoard && (
+                              <li>
+                                  <Link to={"/mod"}>
+                                      Moderator Board
+                                  </Link>
+                              </li>
+                          )}
+
+                          {showAdminBoard && (
+                              <li>
+                                  <Link to={"/admin"}>
+                                      Admin Board
+                                  </Link>
+                              </li>
+                          )}
+
                       </ul>
                   </nav>
 
@@ -133,7 +129,6 @@ const App = () => {
                           <Route path="/login" element={<Login/>} />
                           <Route path="/register" element={<Register/>} />
                           <Route path="/profile" element={<Profile/>} />
-                          <Route path="/user" element={<BoardUser/>} />
                           <Route path="/calc" element={<UserPanel/>} />
                           <Route path="/favourites" element={<Favourites/>} />
                           <Route path="/mod" element={<BoardModerator/>} />
