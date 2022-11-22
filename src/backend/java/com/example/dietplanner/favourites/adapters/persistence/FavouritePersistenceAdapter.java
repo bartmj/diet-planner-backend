@@ -8,6 +8,8 @@ import com.example.dietplanner.favourites.domain.port.FavouriteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Component
 public class FavouritePersistenceAdapter implements FavouriteRepository {
@@ -18,5 +20,10 @@ public class FavouritePersistenceAdapter implements FavouriteRepository {
     @Override
     public FavouriteEntity saveFavourite(Favourite favourite) {
         return jpaFavouriteRepository.save(mapper.toEntity(favourite));
+    }
+
+    @Override
+    public List<Favourite> getAllByUserId(Long userId) {
+        return mapper.toDomain(jpaFavouriteRepository.getAllByUserId(userId));
     }
 }

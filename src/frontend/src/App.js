@@ -13,6 +13,7 @@ import BoardUser from "./components/BoardUser";
 import Profile from "./components/Profile";
 import UserPanel from "./components/UserPanel";
 import logo from './img/4306a6b70354473aaaeb549b78efa6b1.png';
+import Favourites from "./components/Favourites";
 
 const App = () => {
     const [showModeratorBoard, setModeratorBoard] = useState(false);
@@ -83,12 +84,19 @@ const App = () => {
 
                           {currentUser && (
                               <li>
+                                  <Link to={"/favourites"}>
+                                      Favourites
+                                  </Link>
+                              </li>
+                          )}
+
+                          {currentUser && (
+                              <li>
                                   <Link to={"/calc"}>
                                       Macro Calc
                                   </Link>
                               </li>
                           )}
-
                           {currentUser ? (
                               <div>
                                   <li>
@@ -127,6 +135,7 @@ const App = () => {
                           <Route path="/profile" element={<Profile/>} />
                           <Route path="/user" element={<BoardUser/>} />
                           <Route path="/calc" element={<UserPanel/>} />
+                          <Route path="/favourites" element={<Favourites/>} />
                           <Route path="/mod" element={<BoardModerator/>} />
                           <Route path="/admin" element={<BoardAdmin/>} />
                       </Routes>

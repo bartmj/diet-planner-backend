@@ -1,8 +1,5 @@
 package com.example.dietplanner.foods.domain.service;
 
-import com.example.dietplanner.favourites.adapters.persistence.entity.FavouriteEntity;
-import com.example.dietplanner.favourites.domain.Favourite;
-import com.example.dietplanner.favourites.domain.port.FavouriteRepository;
 import com.example.dietplanner.foods.adapters.persistence.entity.FoodEntity;
 import com.example.dietplanner.foods.domain.Food;
 import com.example.dietplanner.foods.domain.port.FoodRepository;

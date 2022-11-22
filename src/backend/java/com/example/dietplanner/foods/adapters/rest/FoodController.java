@@ -36,7 +36,6 @@ public class FoodController {
         if (foodDto.getIfFavourite()) {
             savedToFavourites = favouriteService.saveFavourite(food, userId);
         }
-
         if (savedToFoodsId != null && savedToFavourites != null) {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
