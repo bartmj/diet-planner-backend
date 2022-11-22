@@ -27,8 +27,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "root",
-  "email": "root@gmail.com",
+  "username": "root5435",
+  "email": "root5543@gmail.com",
   "password": "admin123123",
   "role": ["user", "mod", "admin"]
 }

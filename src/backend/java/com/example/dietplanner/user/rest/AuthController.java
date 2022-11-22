@@ -83,10 +83,10 @@ public class AuthController {
                 encoder.encode(signupRequest.getPassword()));
         Set<Role> roles = getRoles(signupRequest);
         user.setRoles(roles);
-        userRepository.save(user);
+        Long id = userRepository.save(user).getId();
 
         return ResponseEntity.ok()
-                .body(new MessageResponse("User registered successfully!"));
+                .body(new MessageResponse("User registered successfully!", id));
     }
 
     private Set<Role> getRoles(SignupRequest signupRequest) {
