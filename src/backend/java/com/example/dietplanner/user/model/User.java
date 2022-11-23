@@ -2,7 +2,6 @@ package com.example.dietplanner.user.model;
 
 import com.example.dietplanner.favourites.adapters.persistence.entity.FavouriteEntity;
 import com.example.dietplanner.foods.adapters.persistence.entity.FoodEntity;
-import com.example.dietplanner.foods.domain.Food;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,6 +38,7 @@ public class User {
     @Length(min = 4, max = 50)
     private String email;
 
+    @NotBlank
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

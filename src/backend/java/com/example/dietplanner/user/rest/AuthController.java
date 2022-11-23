@@ -26,7 +26,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/auth")
@@ -60,7 +59,6 @@ public class AuthController {
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 roles));
-
     }
 
     @PostMapping("/signup")
@@ -120,7 +118,6 @@ public class AuthController {
         }
         return roles;
     }
-
 }
 
 

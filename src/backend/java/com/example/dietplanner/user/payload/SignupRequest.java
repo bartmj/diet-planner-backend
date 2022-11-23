@@ -9,7 +9,9 @@ import java.util.Set;
 @Getter
 public class SignupRequest {
 
+    @NotBlank
     private String username;
+    @NotBlank
     private String email;
     @NotBlank
     @Length(min = 8, max = 120)
