@@ -39,8 +39,6 @@ public class User {
     @Length(min = 4, max = 50)
     private String email;
 
-    @NotBlank
-    @Length(min = 8, max = 120)
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)

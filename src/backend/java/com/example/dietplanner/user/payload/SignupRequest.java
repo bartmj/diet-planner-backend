@@ -1,12 +1,18 @@
 package com.example.dietplanner.user.payload;
 
 import lombok.Getter;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Getter
 public class SignupRequest {
+
     private String username;
     private String email;
+    @NotBlank
+    @Length(min = 8, max = 120)
     private String password;
     private Set<String> role;
 
