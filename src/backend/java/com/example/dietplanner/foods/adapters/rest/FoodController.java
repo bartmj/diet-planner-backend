@@ -40,7 +40,7 @@ public class FoodController {
         if (savedToFoodsId != null && savedToFavourites != null) {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(new MessageResponse(String.format("Food with  id %s been added to favourites.", savedToFoodsId), savedToFoodsId));
+                    .body(new MessageResponse(String.format("Food with id %s been added to favourites.", savedToFoodsId), savedToFoodsId));
         }
         if (savedToFoodsId != null) {
             return ResponseEntity

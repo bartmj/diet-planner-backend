@@ -31,7 +31,8 @@ public class FoodProcessor implements FoodService {
             FoodEntity foodEntity = foodRepository.saveFood(food);
             User user = userOptional.get();
             user.addFood(foodEntity);
-            return userRepository.save(user).getId();
+            userRepository.save(user);
+            return foodEntity.getId();
         }
         return null;
     }

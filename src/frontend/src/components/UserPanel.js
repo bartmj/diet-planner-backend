@@ -31,6 +31,10 @@ class UserPanel extends React.Component {
 
     componentDidMount() {
         this.loadFoods();
+        this.loadFavourites();
+    }
+
+    loadFavourites() {
         apiCalls.getFavourites().then((res) => {
             this.setState({
                 options: res.data
@@ -62,8 +66,9 @@ class UserPanel extends React.Component {
         }
 
         apiCalls.saveFood(dtoObj).then(response => {
-
-            const { id } = response.data;
+            const {
+                data: { id }
+            } = response
 
             this.setState({
                 foods: [
@@ -86,8 +91,8 @@ class UserPanel extends React.Component {
                 ifFavourite: false
             })
         })
+        this.loadFavourites();
     };
-
 
     removeObject = val => {
         let obj = this.state.foods.find(o => o.id === val);
@@ -242,6 +247,7 @@ class UserPanel extends React.Component {
             <h4>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h4>
             <h4>Total fats {Math.round(this.state.totalDayFats * 100) / 100}g</h4>
             <h4>Total carbohydrates {Math.round(this.state.totalDayCarbs * 100) / 100}g</h4>
+
             {this.state.foods.map(food => {
                 return (
                     <div key={food.id}>
