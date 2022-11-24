@@ -25,6 +25,7 @@ public class FavouritesProcessor implements FavouriteService {
                         .proteinPer100g(food.getProteinPer100g())
                         .fatsPer100g(food.getFatsPer100g())
                         .kcalPer100g(food.getKcalPer100g())
+                        .carbsPer100g(food.getCarbsPer100g())
                         .userId(userId)
                         .build());
         return favouriteEntity.getId();

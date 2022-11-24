@@ -71,8 +71,8 @@ class UserPanel extends React.Component {
                     { id: id, name: this.state.name,
                         proteinTotal: proteinPerFood,
                         kcalTotal: kcalPerFood,
-                        totalFats: fatsPerFood,
-                        totalCarbs: carbsPerFood}
+                        fatsTotal: fatsPerFood,
+                        carbsTotal: carbsPerFood}
                 ],
                 name: '',
                 weight: 0,
@@ -242,7 +242,6 @@ class UserPanel extends React.Component {
             <h4>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h4>
             <h4>Total fats {Math.round(this.state.totalDayFats * 100) / 100}g</h4>
             <h4>Total carbohydrates {Math.round(this.state.totalDayCarbs * 100) / 100}g</h4>
-
             {this.state.foods.map(food => {
                 return (
                     <div key={food.id}>

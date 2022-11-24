@@ -21,9 +21,11 @@ public class FoodRestMapperImplementation implements FoodRestMapper {
                 .proteinPer100g(foodDto.getProteinPer100g())
                 .fatsPer100g(foodDto.getFatsPer100g())
                 .kcalPer100g(foodDto.getKcalPer100g())
+                .carbsPer100g(foodDto.getCarbsPer100g())
                 .proteinTotal(foodDto.getProteinTotal())
                 .fatsTotal(foodDto.getFatsTotal())
                 .kcalTotal(foodDto.getKcalTotal())
+                .carbsTotal(foodDto.getCarbsTotal())
                 .build();
     }
 
@@ -40,6 +42,7 @@ public class FoodRestMapperImplementation implements FoodRestMapper {
                 .proteinTotal(food.getProteinTotal())
                 .fatsTotal(food.getFatsTotal())
                 .kcalTotal(food.getKcalTotal())
+                .carbsTotal(food.getCarbsTotal())
                 .build();
     }
 
