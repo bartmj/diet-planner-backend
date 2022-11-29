@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/calc")
@@ -25,7 +26,7 @@ public class FoodController {
     private final FoodRestMapper foodRestMapper;
     private final IAuthenticationFacade authFacade;
 
-    @CrossOrigin
+
     @PostMapping(value = "/add", consumes = "application/json")
     public ResponseEntity<?> sendFood(@Valid @RequestBody FoodDto foodDto) {
         Long userId = authFacade.getUserId();

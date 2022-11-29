@@ -79,13 +79,14 @@ GET http://localhost:5000/api/test/user
 Accept: application/json
 
 ### SIGN IN AS USER
+#POST http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/api/auth/signup
 POST http://localhost:5000/api/auth/signin
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "mod",
-  "password": "modmodmod"
+  "username": "admin",
+  "password": "adminadmin"
 }
 
 ### SIGN IN AS ADMIN
