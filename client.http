@@ -1,11 +1,12 @@
-POST http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/foods/add
-#POST http://localhost:5000/foods/add
+#POST http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/calc/add
+POST http://localhost:5000/calc/add
 Accept: application/json
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY2OTczNTkzNCwiZXhwIjoxNjY5ODIyMzM0fQ.xKgdvqRyBOFaAQ5_5H6usJDrPwaqHvUR4iZExLjn0LFpRcHEScpZZV5K936zqYKFOHXYmfxySAQw0AwFXqNCMA
 
 {
   "id": null,
-  "name": "ser",
+  "name": "ser biały",
   "weight": 200,
   "proteinPer100g": 27,
   "fatsPer100g": 8,
@@ -27,7 +28,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "bartmj",
+  "username": "admin",
   "email": "root55343@gmail.com",
   "password": "adminadmin",
   "role": ["user", "mod", "admin"]
@@ -41,7 +42,7 @@ Content-Type: application/json
 {
   "username": "mod",
   "email": "mod@mail.pl",
-  "password": "mod",
+  "password": "modmodmod",
   "role": ["mod", "user"]
 }
 
@@ -83,8 +84,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "root",
-  "password": "admin123123"
+  "username": "mod",
+  "password": "modmodmod"
 }
 
 ### SIGN IN AS ADMIN
@@ -93,8 +94,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user023432733",
-  "password": "1234567890"
+  "username": "admin",
+  "password": "adminadmin"
 }
 
 ### SIGN IN AS MODERATOR

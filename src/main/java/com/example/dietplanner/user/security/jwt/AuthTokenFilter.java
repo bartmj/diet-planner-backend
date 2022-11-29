@@ -25,6 +25,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private UserDetailsServiceImpl userDetailsService;
 
+    @Autowired
     public AuthTokenFilter(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
