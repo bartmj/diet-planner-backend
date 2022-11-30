@@ -8,7 +8,7 @@ class UserPanel extends React.Component {
 
         this.state = {
             name: '',
-            weight: 0,
+            weight: undefined,
             proteinPer100g: 0,
             fatsPer100g: 0,
             carbsPer100g: 0,
@@ -84,6 +84,7 @@ class UserPanel extends React.Component {
                 proteinPer100g: 0,
                 fatsPer100g: 0,
                 kcalPer100g: 0,
+                carbsPer100g: 0,
                 totalDayProtein: this.state.totalDayProtein + proteinPerFood,
                 totalDayFats: this.state.totalDayFats + fatsPerFood,
                 totalDayKcal: this.state.totalDayKcal + kcalPerFood,
@@ -166,6 +167,7 @@ class UserPanel extends React.Component {
 
             <div className="form-group">
                 <label>food: </label>
+                <br></br>
                 <input
                     id="multiselect"
                     type="text"
@@ -186,6 +188,7 @@ class UserPanel extends React.Component {
 
             <div className="form-group">
                 <label>weight (grams):</label>
+                <br></br>
                 <input
                     name="weight"
                     value={this.state.weight}
@@ -194,6 +197,7 @@ class UserPanel extends React.Component {
 
             <div className="form-group">
                 <label>protein/100g: </label>
+                <br></br>
                 <input
                     name="proteinPer100g"
                     value={this.state.proteinPer100g}
@@ -202,6 +206,7 @@ class UserPanel extends React.Component {
 
             <div className="form-group">
                 <label>fats/100g: </label>
+                <br></br>
                 <input
                     name="fatsPer100g"
                     value={this.state.fatsPer100g}
@@ -210,6 +215,7 @@ class UserPanel extends React.Component {
 
             <div className="form-group">
                 <label>carbohydrates/100g: </label>
+                <br></br>
                 <input
                     name="carbsPer100g"
                     value={this.state.carbsPer100g}
@@ -218,6 +224,7 @@ class UserPanel extends React.Component {
 
             <div className="form-group">
                 <label>calories/100g: </label>
+                <br></br>
                 <input
                     name="kcalPer100g"
                     value={this.state.kcalPer100g}

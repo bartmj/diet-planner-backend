@@ -58,11 +58,13 @@ const Login = () => {
             <Form>
                 <div className="form-group">
                     <label htmlFor="username">Username </label>
+                    <br></br>
                     <Field name="username" type="text" />
                     <ErrorMessage name="username" component="div" />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password </label>
+                    <br></br>
                     <Field name="password" type="password" />
                     <ErrorMessage name="password" component="div" />
                 </div>

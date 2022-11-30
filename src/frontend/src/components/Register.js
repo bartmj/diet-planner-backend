@@ -67,7 +67,7 @@ const Register = () => {
     return (
         <div className="container">
             <div>
-                <h1>Sign p</h1>
+                <h1>Sign up</h1>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
@@ -78,16 +78,19 @@ const Register = () => {
                             <div>
                                 <div className="form-group">
                                     <label>Username </label>
+                                    <br></br>
                                     <Field name="username" type="text" ></Field>
                                     <ErrorMessage name="username" component="div" />
                                 </div>
                                 <div className="form-group">
                                     <label>Email </label>
+                                    <br></br>
                                     <Field name="email" type="text" ></Field>
                                     <ErrorMessage name="email" component="div" />
                                 </div>
                                 <div className="form-group">
                                     <label>Password </label>
+                                    <br></br>
                                     <Field name="password" type="password" ></Field>
                                     <ErrorMessage name="password" component="div" />
                                 </div>

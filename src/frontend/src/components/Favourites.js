@@ -16,11 +16,17 @@ const Favourites = () => {
 
         <div className="container">
             <h1>Favourites</h1>
-            <p>A list of your favourite foods.</p>
+            <h3>A list of your favourite foods:</h3>
             {data.map(favourite => {
                 return (
                     <div key={favourite.id}>
-                        <div>{favourite.name} {favourite.proteinPer100g} {favourite.fatsPer100g} {favourite.kcalPer100g} {favourite.carbsPer100g}</div>
+                        <p><strong>{favourite.name}</strong></p>
+                        <p>
+                            kcal: {favourite.kcalPer100g},
+                            protein: {favourite.proteinPer100g}g,
+                            fats: {favourite.fatsPer100g},
+                            carbs: {favourite.carbsPer100g}
+                        </p>
                         <hr />
                     </div>
                 )
