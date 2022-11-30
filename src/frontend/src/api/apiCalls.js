@@ -1,11 +1,9 @@
 import axios from 'axios';
 import authHeader from '../services/authHeader';
-import {useEffect} from "react";
 
-const port = 5000
-// const rdsUrl = 'dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com'
+// const basePath = `http://localhost:5000/`;
 
-const basePath = `http://localhost:5000/`;
+const basePath = 'dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/';
 
 export const remove = (val) => {
     axios.delete(basePath + 'calc/all/' + val, { headers: authHeader()}).then(r => {});
