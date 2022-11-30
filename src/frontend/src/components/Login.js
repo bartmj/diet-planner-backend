@@ -36,7 +36,7 @@ const Login = () => {
         dispatch(login({username, password}))
             .unwrap()
             .then(() => {
-                navigate("/profile");
+                navigate("/calc");
             })
             .catch(() => {
                 setLoading(false);
@@ -44,7 +44,7 @@ const Login = () => {
     };
 
     if (isLoggedIn) {
-        return <Navigate to="/profile" />;
+        return <Navigate to="/calc" />;
     }
 
     return (
