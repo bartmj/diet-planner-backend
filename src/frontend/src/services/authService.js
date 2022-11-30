@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const API_URL = "http://localhost:5000/api/auth/"
 
-const API_URL = 'dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/api/auth/';
+const API_URL = 'http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/api/auth/';
 
 
 const register = (username, email, password) => {

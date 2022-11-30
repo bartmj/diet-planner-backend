@@ -3,7 +3,7 @@ import authHeader from '../services/authHeader';
 
 // const basePath = `http://localhost:5000/`;
 
-const basePath = 'dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/';
+const basePath = 'http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/';
 
 export const remove = (val) => {
     axios.delete(basePath + 'calc/all/' + val, { headers: authHeader()}).then(r => {});

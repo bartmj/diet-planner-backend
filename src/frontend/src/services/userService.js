@@ -3,7 +3,7 @@ import authHeader from "./authHeader";
 
 // const API_URL = "http://localhost:5000/api/test/";
 
-const API_URL = 'dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/api/test/';
+const API_URL = 'http://dietplannerrds-env.eba-s2nrkgap.eu-north-1.elasticbeanstalk.com/api/test/';
 
 
 const getPublicContent = () => {
