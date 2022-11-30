@@ -52,7 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().permitAll();
+        http.cors().and().csrf().disable()
+                .authorizeRequests().anyRequest().permitAll();
 //        http.cors().and().csrf().disable()
 //                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 //                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
@@ -67,6 +68,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 }
+
+
+
+//https://stackoverflow.com/questions/27170772/where-to-put-static-files-such-as-css-in-a-spring-boot-project
+
+//    Apart from placing it anywhere beneath src/main/resources/static and not using @EnableWebMvc, you'll need to authorize access to your js or css folder especially if you have spring-boot-security in you classpath. You'll add something like this:
+//
+//@Configuration
+//@EnableWebSecurity
+//public class MainSecurityConfig extends WebSecurityConfigurerAdapter {
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/", "/home", "/js/**", "/css/**").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .permitAll();
+//    }
+//}
+//
+//    Then in your HTML:
+//
+//<link rel="stylesheet"  href="/css/bootstrap.min.css">
+//<script src="/js/bootstrap.min.js"></script>
+//
+
 
 
 

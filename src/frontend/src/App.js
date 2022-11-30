@@ -52,8 +52,6 @@ const App = () => {
                       </Link>
                       <ul>
 
-
-
                           {currentUser ? (
                               <div>
                                   <li>
