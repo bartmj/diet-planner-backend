@@ -7,7 +7,6 @@ const Favourites = () => {
 
     useEffect(() => {
         apiCalls.getFavourites().then((res) => {
-            console.log(res)
             setData(res.data)
         });
     }, []);
