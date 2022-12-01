@@ -12,4 +12,6 @@ public interface FoodRepository {
     List<Food> getAll(Long id);
 
     boolean deleteFood(Long id);
+
+    FoodEntity getReferenceById(Long aLong);
 }

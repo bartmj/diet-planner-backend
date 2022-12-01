@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -63,6 +64,7 @@ public class User {
         this.password = password;
     }
 
+
     public boolean addFood(Object object) {
         if (object.getClass() == FoodEntity.class) {
             foods.add((FoodEntity) object);
@@ -75,13 +77,9 @@ public class User {
         return false;
     }
 
-    public boolean deleteFood(Long id) {
-        for (FoodEntity food : foods) {
-            if (food.getId() == id) {
-                foods.remove(food);
-                return true;
-            }
-        }
-        return false;
+
+    public boolean deleteFood(FoodEntity foodEntity) {
+        return foods.remove(foodEntity);
     }
+
 }

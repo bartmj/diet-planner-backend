@@ -1,9 +1,10 @@
 import axios from "axios";
-import {API_URL} from '../Constants';
+import { API_URL } from '../Constants';
 
+const url = API_URL + "api/auth/";
 
 const register = (username, email, password) => {
-    return axios.post(API_URL + "signup", {
+    return axios.post(url + "signup", {
         username,
         email,
         password,
@@ -12,7 +13,7 @@ const register = (username, email, password) => {
 
 const login = (username, password) => {
     return axios
-        .post(API_URL + "signin", {
+        .post(url + "signin", {
             username,
             password,
         })

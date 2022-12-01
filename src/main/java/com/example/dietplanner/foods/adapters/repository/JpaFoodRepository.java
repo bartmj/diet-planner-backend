@@ -8,4 +8,6 @@ import java.util.List;
 public interface JpaFoodRepository extends JpaRepository<FoodEntity, Long> {
 
     List<FoodEntity> getAllByUserId(Long id);
+
+    FoodEntity getReferenceById(Long aLong);
 }
