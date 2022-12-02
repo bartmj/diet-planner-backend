@@ -80,19 +80,19 @@ const Register = () => {
                                     <label>Username </label>
                                     <br></br>
                                     <Field name="username" type="text" ></Field>
-                                    <ErrorMessage name="username" component="div" />
+                                    <ErrorMessage name="username" component="div" className="error-msg" />
                                 </div>
                                 <div className="form-group">
                                     <label>Email </label>
                                     <br></br>
                                     <Field name="email" type="text" ></Field>
-                                    <ErrorMessage name="email" component="div" />
+                                    <ErrorMessage name="email" component="div" className="error-msg" />
                                 </div>
                                 <div className="form-group">
                                     <label>Password </label>
                                     <br></br>
                                     <Field name="password" type="password" ></Field>
-                                    <ErrorMessage name="password" component="div" />
+                                    <ErrorMessage name="password" component="div" className="error-msg" />
                                 </div>
                                 <div>
                                     <button type="submit">Sign Up</button>
