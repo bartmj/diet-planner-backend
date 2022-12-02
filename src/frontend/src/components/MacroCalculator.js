@@ -249,11 +249,14 @@ class MacroCalculator extends React.Component {
                 </div>
             </div>
 
-            <h4>Today:</h4>
-            <h4>Total calories {Math.round(this.state.totalDayKcal * 100) / 100}kcal</h4>
-            <h4>Total protein {Math.round(this.state.totalDayProtein * 100) / 100}g</h4>
-            <h4>Total fats {Math.round(this.state.totalDayFats * 100) / 100}g</h4>
-            <h4>Total carbohydrates {Math.round(this.state.totalDayCarbs * 100) / 100}g</h4>
+            <h4>Total macros today:</h4>
+            <p>calories: {Math.round(this.state.totalDayKcal * 100) / 100}kcal</p>
+            <p>protein: {Math.round(this.state.totalDayProtein * 100) / 100}g</p>
+            <p>fats: {Math.round(this.state.totalDayFats * 100) / 100}g</p>
+            <p>carbohydrates: {Math.round(this.state.totalDayCarbs * 100) / 100}g</p>
+
+            <h4>List of today's foods</h4>
+            <hr />
 
             {this.state.foods.map(food => {
                 return (
