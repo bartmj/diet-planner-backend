@@ -13,6 +13,8 @@ import Profile from "./components/Profile";
 import UserPanel from "./components/UserPanel";
 import logo from './img/4306a6b70354473aaaeb549b78efa6b1.png';
 import Favourites from "./components/Favourites";
+import Logout from "./components/Logout";
+import Page404 from "./components/Page404";
 
 const App = () => {
     const [showModeratorBoard, setModeratorBoard] = useState(false);
@@ -46,6 +48,7 @@ const App = () => {
 
   return (
           <BrowserRouter>
+
                   <nav>
                       <Link to={"/"}>
                           <img height="84px" src={logo} alt="Logo" />
@@ -60,7 +63,7 @@ const App = () => {
                                       </Link>
                                   </li>
                                   <li>
-                                      <a href="/login" onClick={logOut}>
+                                      <a href="/logout" onClick={logOut}>
                                           LogOut
                                       </a>
                                   </li>
@@ -131,6 +134,8 @@ const App = () => {
                           <Route path="/favourites" element={<Favourites/>} />
                           <Route path="/mod" element={<BoardModerator/>} />
                           <Route path="/admin" element={<BoardAdmin/>} />
+                          <Route path="/logout" element={<Logout />} />
+                          <Route path="*" component={<Page404 />} />
                       </Routes>
 
           </BrowserRouter>
