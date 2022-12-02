@@ -10,7 +10,7 @@ import Register from './components/Register';
 import BoardAdmin from "./components/BoardAdmin";
 import BoardModerator from "./components/BoardModerator";
 import Profile from "./components/Profile";
-import UserPanel from "./components/UserPanel";
+import MacroCalculator from "./components/MacroCalculator";
 import logo from './img/4306a6b70354473aaaeb549b78efa6b1.png';
 import Favourites from "./components/Favourites";
 import Logout from "./components/Logout";
@@ -130,7 +130,7 @@ const App = () => {
                           <Route path="/login" element={<Login/>} />
                           <Route path="/register" element={<Register/>} />
                           <Route path="/profile" element={<Profile/>} />
-                          <Route path="/calc" element={<UserPanel/>} />
+                          <Route path="/calc" element={<MacroCalculator/>} />
                           <Route path="/favourites" element={<Favourites/>} />
                           <Route path="/mod" element={<BoardModerator/>} />
                           <Route path="/admin" element={<BoardAdmin/>} />

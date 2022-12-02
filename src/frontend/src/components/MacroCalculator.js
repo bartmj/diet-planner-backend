@@ -2,7 +2,7 @@ import React from 'react';
 import * as apiCalls from '../api/apiCalls';
 import store from '../store';
 
-class UserPanel extends React.Component {
+class MacroCalculator extends React.Component {
     constructor(props) {
         super(props);
 
@@ -283,7 +283,7 @@ class UserPanel extends React.Component {
     }
 }
 
-export default UserPanel;
+export default MacroCalculator;
 
 
 

@@ -22,9 +22,8 @@ const Home = () => {
 
     return (
         <div className="container">
-            <h1>Hi!</h1>
+            <h1>{content}</h1>
             <header>
-                <h3>{content}</h3>
                 <p>This is a high performant Macro Calculator created for people who want to optimize their diet.</p>
             </header>
         </div>
