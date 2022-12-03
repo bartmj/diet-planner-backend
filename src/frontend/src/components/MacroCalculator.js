@@ -192,7 +192,9 @@ class MacroCalculator extends React.Component {
                 <input
                     name="weight"
                     value={this.state.weight}
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    type="number"
+                />
             </div>
 
             <div className="form-group">
@@ -201,7 +203,9 @@ class MacroCalculator extends React.Component {
                 <input
                     name="proteinPer100g"
                     value={this.state.proteinPer100g}
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    type="number"
+                />
             </div>
 
             <div className="form-group">
@@ -210,7 +214,9 @@ class MacroCalculator extends React.Component {
                 <input
                     name="fatsPer100g"
                     value={this.state.fatsPer100g}
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    type="number"
+                />
             </div>
 
             <div className="form-group">
@@ -219,7 +225,9 @@ class MacroCalculator extends React.Component {
                 <input
                     name="carbsPer100g"
                     value={this.state.carbsPer100g}
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    type="number"
+                />
             </div>
 
             <div className="form-group">
@@ -228,7 +236,9 @@ class MacroCalculator extends React.Component {
                 <input
                     name="kcalPer100g"
                     value={this.state.kcalPer100g}
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    type="number"
+                />
             </div>
 
             <div className="flex-01">
