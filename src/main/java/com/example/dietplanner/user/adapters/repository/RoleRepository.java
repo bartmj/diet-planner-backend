@@ -1,7 +1,7 @@
-package com.example.dietplanner.user.repository;
+package com.example.dietplanner.user.adapters.repository;
 
-import com.example.dietplanner.user.model.EnumRole;
-import com.example.dietplanner.user.model.Role;
+import com.example.dietplanner.user.domain.model.EnumRole;
+import com.example.dietplanner.user.domain.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

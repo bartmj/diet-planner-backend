@@ -1,6 +1,6 @@
 package com.example.dietplanner.user.security.services;
 
-import com.example.dietplanner.user.model.User;
+import com.example.dietplanner.user.domain.model.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;

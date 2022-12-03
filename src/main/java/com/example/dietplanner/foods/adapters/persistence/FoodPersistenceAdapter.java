@@ -5,12 +5,10 @@ import com.example.dietplanner.foods.adapters.repository.JpaFoodRepository;
 import com.example.dietplanner.foods.domain.Food;
 import com.example.dietplanner.foods.domain.port.FoodPersistenceMapper;
 import com.example.dietplanner.foods.domain.port.FoodRepository;
-import com.example.dietplanner.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Component

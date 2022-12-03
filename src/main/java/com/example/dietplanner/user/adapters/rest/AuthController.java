@@ -1,14 +1,14 @@
-package com.example.dietplanner.user.rest;
+package com.example.dietplanner.user.adapters.rest;
 
-import com.example.dietplanner.user.model.EnumRole;
-import com.example.dietplanner.user.model.Role;
-import com.example.dietplanner.user.model.User;
-import com.example.dietplanner.user.payload.JwtResponse;
-import com.example.dietplanner.user.payload.LoginRequest;
-import com.example.dietplanner.user.payload.MessageResponse;
-import com.example.dietplanner.user.payload.SignupRequest;
-import com.example.dietplanner.user.repository.RoleRepository;
-import com.example.dietplanner.user.repository.UserRepository;
+import com.example.dietplanner.user.domain.model.EnumRole;
+import com.example.dietplanner.user.domain.model.Role;
+import com.example.dietplanner.user.domain.model.User;
+import com.example.dietplanner.user.domain.payload.JwtResponse;
+import com.example.dietplanner.user.domain.payload.LoginRequest;
+import com.example.dietplanner.user.domain.payload.MessageResponse;
+import com.example.dietplanner.user.domain.payload.SignupRequest;
+import com.example.dietplanner.user.adapters.repository.RoleRepository;
+import com.example.dietplanner.user.adapters.repository.UserRepository;
 import com.example.dietplanner.user.security.jwt.JwtUtils;
 import com.example.dietplanner.user.security.services.UserDetailsImpl;
 import lombok.AllArgsConstructor;
@@ -38,29 +38,6 @@ public class AuthController {
     PasswordEncoder encoder;
     JwtUtils jwtUtils;
 
-    @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
-        );
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
-
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .toList();
-
-        return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
-    }
-
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
         if (userRepository.existsByUsername(signupRequest.getUsername())) {
@@ -85,6 +62,29 @@ public class AuthController {
 
         return ResponseEntity.ok()
                 .body(new MessageResponse("User registered successfully!", id));
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        List<String> roles = userDetails.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .toList();
+
+        return ResponseEntity.ok(new JwtResponse(jwt,
+                userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                roles));
     }
 
     private Set<Role> getRoles(SignupRequest signupRequest) {

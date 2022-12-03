@@ -1,4 +1,4 @@
-package com.example.dietplanner.user.model;
+package com.example.dietplanner.user.domain.model;
 
 public enum EnumRole {
     ROLE_USER,

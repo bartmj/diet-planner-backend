@@ -1,4 +1,4 @@
-package com.example.dietplanner.user.payload;
+package com.example.dietplanner.user.domain.payload;
 
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;

@@ -4,7 +4,7 @@ import com.example.dietplanner.favourites.domain.port.FavouriteRepository;
 import com.example.dietplanner.favourites.domain.service.FavouritesProcessor;
 import com.example.dietplanner.foods.domain.port.FoodRepository;
 import com.example.dietplanner.foods.domain.service.DefaultFoodService;
-import com.example.dietplanner.user.repository.UserRepository;
+import com.example.dietplanner.user.adapters.repository.UserRepository;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
 

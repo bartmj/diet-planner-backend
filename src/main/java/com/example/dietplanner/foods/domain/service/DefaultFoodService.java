@@ -4,8 +4,8 @@ import com.example.dietplanner.foods.adapters.persistence.entity.FoodEntity;
 import com.example.dietplanner.foods.domain.Food;
 import com.example.dietplanner.foods.domain.port.FoodRepository;
 import com.example.dietplanner.foods.domain.port.FoodService;
-import com.example.dietplanner.user.model.User;
-import com.example.dietplanner.user.repository.UserRepository;
+import com.example.dietplanner.user.domain.model.User;
+import com.example.dietplanner.user.adapters.repository.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;

@@ -1,4 +1,4 @@
-package com.example.dietplanner.user.model;
+package com.example.dietplanner.user.domain.model;
 
 import com.example.dietplanner.favourites.adapters.persistence.entity.FavouriteEntity;
 import com.example.dietplanner.foods.adapters.persistence.entity.FoodEntity;
@@ -6,7 +6,6 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

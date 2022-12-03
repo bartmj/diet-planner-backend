@@ -2,7 +2,7 @@ package com.example.dietplanner.favourites.adapters.rest;
 
 import com.example.dietplanner.favourites.domain.Favourite;
 import com.example.dietplanner.favourites.domain.port.FavouriteService;
-import com.example.dietplanner.user.port.IAuthenticationFacade;
+import com.example.dietplanner.user.domain.port.IAuthenticationFacade;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

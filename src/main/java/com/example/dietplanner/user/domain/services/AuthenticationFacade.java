@@ -1,6 +1,6 @@
-package com.example.dietplanner.user.services;
+package com.example.dietplanner.user.domain.services;
 
-import com.example.dietplanner.user.port.IAuthenticationFacade;
+import com.example.dietplanner.user.domain.port.IAuthenticationFacade;
 import com.example.dietplanner.user.security.services.UserDetailsImpl;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

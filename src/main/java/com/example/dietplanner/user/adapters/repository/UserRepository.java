@@ -1,6 +1,6 @@
-package com.example.dietplanner.user.repository;
+package com.example.dietplanner.user.adapters.repository;
 
-import com.example.dietplanner.user.model.User;
+import com.example.dietplanner.user.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

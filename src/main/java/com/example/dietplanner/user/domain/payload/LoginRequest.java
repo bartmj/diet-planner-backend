@@ -1,4 +1,4 @@
-package com.example.dietplanner.user.payload;
+package com.example.dietplanner.user.domain.payload;
 
 import java.lang.String;
 
