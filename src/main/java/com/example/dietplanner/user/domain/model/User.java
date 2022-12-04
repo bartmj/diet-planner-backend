@@ -24,7 +24,7 @@ import java.util.Set;
 @EqualsAndHashCode(of = "id")
 @Getter
 @Setter
-public class Users {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,11 +53,11 @@ public class Users {
     @OneToMany(cascade = CascadeType.ALL)
     private List<FavouriteEntity> favouriteFoods;
 
-    public Users() {
+    public User() {
 
     }
 
-    public Users(String username, String email, String password) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;

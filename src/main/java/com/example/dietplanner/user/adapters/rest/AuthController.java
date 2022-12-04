@@ -1,14 +1,10 @@
 package com.example.dietplanner.user.adapters.rest;
 
-import com.example.dietplanner.user.domain.model.EnumRole;
-import com.example.dietplanner.user.domain.model.Role;
-import com.example.dietplanner.user.domain.model.User;
 import com.example.dietplanner.user.domain.payload.JwtResponse;
 import com.example.dietplanner.user.domain.payload.LoginRequest;
 import com.example.dietplanner.user.domain.payload.MessageResponse;
 import com.example.dietplanner.user.domain.payload.SignupRequest;
-import com.example.dietplanner.user.adapters.repository.RoleRepository;
-import com.example.dietplanner.user.adapters.repository.UserRepository;
+import com.example.dietplanner.user.domain.port.UserService;
 import com.example.dietplanner.user.security.jwt.JwtUtils;
 import com.example.dietplanner.user.security.services.UserDetailsImpl;
 import lombok.AllArgsConstructor;
@@ -18,12 +14,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -33,40 +26,28 @@ import java.util.List;
 public class AuthController {
 
     AuthenticationManager authenticationManager;
-    UserRepository userRepository;
-    RoleRepository roleRepository;
-    PasswordEncoder encoder;
+    UserService userService;
     JwtUtils jwtUtils;
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signupRequest) {
-        if (userRepository.existsByUsername(signupRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already in use!"));
-        }
 
-        if (userRepository.existsByEmail(signupRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
-        }
-
-        // Create new user's account
-        User user = new User(signupRequest.getUsername(),
-                signupRequest.getEmail(),
-                encoder.encode(signupRequest.getPassword()));
-        Set<Role> roles = getRoles(signupRequest);
-        user.setRoles(roles);
-        Long id = userRepository.save(user).getId();
+        Long userId = userService.registerUser(signupRequest);
 
         return ResponseEntity.ok()
-                .body(new MessageResponse("User registered successfully!", id));
+                .body(new MessageResponse("User registered successfully!", userId));
     }
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
+        JwtResponse jwtResponse = createJwtResponse(loginRequest);
+
+        return ResponseEntity.ok(jwtResponse);
+    }
+
+    private JwtResponse createJwtResponse(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
         );
@@ -80,43 +61,11 @@ public class AuthController {
                 .map(GrantedAuthority::getAuthority)
                 .toList();
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        return new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles));
-    }
-
-    private Set<Role> getRoles(SignupRequest signupRequest) {
-        Set<String> strRoles = signupRequest.getRole();
-        Set<Role> roles = new HashSet<>();
-
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(EnumRole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: role not found."));
-            roles.add(userRole);
-        } else {
-            for (String role : strRoles) {
-                switch (role) {
-                    case "admin" -> {
-                        Role adminRole = roleRepository.findByName(EnumRole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: role not found."));
-                        roles.add(adminRole);
-                    }
-                    case "mod" -> {
-                        var modRole = roleRepository.findByName(EnumRole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: role not found."));
-                        roles.add(modRole);
-                    }
-                    default -> {
-                        Role userRole = roleRepository.findByName(EnumRole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: role not found."));
-                        roles.add(userRole);
-                    }
-                }
-            }
-        }
-        return roles;
+                roles);
     }
 }
 

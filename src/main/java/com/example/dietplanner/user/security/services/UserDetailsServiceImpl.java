@@ -1,7 +1,7 @@
 package com.example.dietplanner.user.security.services;
 
 import com.example.dietplanner.user.domain.model.User;
-import com.example.dietplanner.user.adapters.repository.UserRepository;
+import com.example.dietplanner.user.adapters.persistence.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

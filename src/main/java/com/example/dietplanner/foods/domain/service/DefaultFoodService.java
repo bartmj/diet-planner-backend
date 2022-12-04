@@ -5,12 +5,13 @@ import com.example.dietplanner.foods.domain.Food;
 import com.example.dietplanner.foods.domain.port.FoodRepository;
 import com.example.dietplanner.foods.domain.port.FoodService;
 import com.example.dietplanner.user.domain.model.User;
-import com.example.dietplanner.user.adapters.repository.UserRepository;
+import com.example.dietplanner.user.adapters.persistence.UserRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@Transactional
 public class DefaultFoodService implements FoodService {
 
     private final FoodRepository foodRepository;
@@ -21,7 +22,7 @@ public class DefaultFoodService implements FoodService {
         this.userRepository = userRepository;
     }
 
-    @Transactional
+
     @Override
     public Long saveFood(Food food, Long userId) {
 
@@ -43,7 +44,7 @@ public class DefaultFoodService implements FoodService {
         return foodRepository.getAll(userId);
     }
 
-    @Transactional
+
     @Override
     public boolean delete(Long foodId, Long userId) {
         var userOptional = userRepository.findById(userId);

@@ -1,10 +1,13 @@
-package com.example.dietplanner.user.domain.port;
+package com.example.dietplanner.user.adapters.persistence;
 
 import com.example.dietplanner.user.domain.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public interface UserRepository {
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
 
@@ -12,5 +15,4 @@ public interface UserRepository {
 
     Boolean existsByEmail(String email);
 
-    Long save(User user);
 }

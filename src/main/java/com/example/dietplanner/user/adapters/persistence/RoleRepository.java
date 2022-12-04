@@ -1,4 +1,4 @@
-package com.example.dietplanner.user.adapters.persistence.repository;
+package com.example.dietplanner.user.adapters.persistence;
 
 import com.example.dietplanner.user.domain.model.EnumRole;
 import com.example.dietplanner.user.domain.model.Role;
